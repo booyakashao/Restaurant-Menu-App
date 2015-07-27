@@ -1,5 +1,7 @@
 package com.wen.database;
 
+import android.app.AlertDialog;
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,6 +22,7 @@ public class DatabaseTestingActivity extends ActionBarActivity {
     EditText editMarks;
 
     Button btnAddData;
+    Button viewAllButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,9 @@ public class DatabaseTestingActivity extends ActionBarActivity {
         editSurname = (EditText) findViewById(R.id.editSurname);
         editMarks = (EditText) findViewById(R.id.editMarks);
         btnAddData = (Button) findViewById(R.id.addDataButton);
+        viewAllButton = (Button) findViewById(R.id.viewAllButton);
         addData();
+        viewAll();
     }
 
     public void addData() {
@@ -39,10 +44,9 @@ public class DatabaseTestingActivity extends ActionBarActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(DatabaseTestingActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
                         boolean isInserted = myDb.insertData(editName.getText().toString(), editSurname.getText().toString(), editMarks.getText().toString());
 
-                        if(isInserted) {
+                        if (isInserted) {
                             Toast.makeText(DatabaseTestingActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(DatabaseTestingActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
@@ -50,6 +54,39 @@ public class DatabaseTestingActivity extends ActionBarActivity {
                     }
                 }
         );
+    }
+
+    public void viewAll() {
+        viewAllButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Cursor res = myDb.getAllData();
+                        if(res.getCount() == 0) {
+                            showMessage("Error: ", "No records found.");
+                            return;
+                        }
+
+                        StringBuffer buffer = new StringBuffer();
+                        while(res.moveToNext()) {
+                            buffer.append("ID: " + res.getString(0) + "\n");
+                            buffer.append("Name: " + res.getString(1) + "\n");
+                            buffer.append("Surname: " + res.getString(2) + "\n");
+                            buffer.append("Marks: " + res.getString(3) + "\n");
+                        }
+
+                        showMessage("Data", buffer.toString());
+                    }
+                }
+        );
+    }
+
+    public void showMessage(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
     }
 
     @Override
