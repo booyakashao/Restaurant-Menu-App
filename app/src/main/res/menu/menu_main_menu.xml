@@ -2,6 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.wen.foodmenuprinter.MainMenuActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+    <item android:id="@+id/create_new_menu_option" android:title="@string/create_new_menu_option"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/choose_menu_option" android:title="@string/choose_menu_option"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/edit_menu_option" android:title="@string/edit_menu_option"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/delete_menu_option" android:title="@string/delete_menu_option"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>

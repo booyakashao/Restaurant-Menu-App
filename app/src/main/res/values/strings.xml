@@ -1,7 +1,20 @@
 <resources>
     <string name="app_name">Food Menu Printer</string>
     <string name="action_settings">Settings</string>
+
     <string name="splash_placeholder">Food Menu Printer Splash Placeholder</string>
+
     <string name="title_activity_database_testing">DatabaseTestingActivity</string>
     <string name="title_activity_main_menu">MainMenuActivity</string>
+
+    <string name="create_menu_button_text">Create Menu</string>
+    <string name="open_menu_button_text">Open Menu</string>
+
+    <string name="create_new_menu_option">Create New Menu</string>
+    <string name="choose_menu_option">Choose Menu</string>
+    <string name="edit_menu_option">Edit Menu</string>
+    <string name="delete_menu_option">Delete Menu</string>
+    <string name="title_activity_create_menu">CreateMenuActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
