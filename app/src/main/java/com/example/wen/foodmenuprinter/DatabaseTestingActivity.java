@@ -2,8 +2,8 @@ package com.example.wen.foodmenuprinter;
 
 import android.app.AlertDialog;
 import android.database.Cursor;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.wen.database.DatabaseAccess;
 
-public class DatabaseTestingActivity extends ActionBarActivity {
+public class DatabaseTestingActivity extends AppCompatActivity {
 
     DatabaseAccess myDb;
 
