@@ -4,14 +4,26 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.wen.database.dao.MenuDAO;
 
 
 public class MainMenuActivity extends ActionBarActivity {
+
+
+    MenuDAO menuDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        if(menuDAO.doesMenusExist()) {
+            Toast.makeText(MainMenuActivity.this, "Menu Exists", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(MainMenuActivity.this, "Menu Does Not Exists", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

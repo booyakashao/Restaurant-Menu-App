@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by Wen on 7/27/2015.
  */
-public class DatabaseUtils extends SQLiteOpenHelper {
+public class DatabaseUtilities extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "restaurant_menu_database.db";
 
@@ -38,7 +38,7 @@ public class DatabaseUtils extends SQLiteOpenHelper {
     public static final String TAX_RATE_COL_1 = "id";
     public static final String TAX_RATE_COL_2 = "tax_rate";
 
-    public DatabaseUtils(Context context) {
+    public DatabaseUtilities(Context context) {
         super(context, DATABASE_NAME, null, 1);
         SQLiteDatabase db = this.getWritableDatabase();
     }
@@ -112,37 +112,5 @@ public class DatabaseUtils extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TAX_RATE_TABLE_NAME);
 
         onCreate(db);
-    }
-
-    //Check if Menu exists
-    public boolean doesMenusExist() {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        Cursor cursor = db.rawQuery("select count(*) from " + MENU_ITEM_TABLE_NAME, null);
-        cursor.moveToFirst();
-        int cursorCount = cursor.getInt(0);
-
-        if(cursorCount > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // Gets currently selected Menu
-    public Integer getSelectedMenuId() {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        Cursor cursor = db.rawQuery("select " +
-                MENU_ITEM_COL_1 +
-                " from " +
-                MENU_ITEM_TABLE_NAME +
-                " where " +
-                MENU_ITEM_COL_6 +
-                " == 1"
-                , null);
-
-        cursor.moveToFirst();
-        return cursor.getInt(0);
     }
 }
