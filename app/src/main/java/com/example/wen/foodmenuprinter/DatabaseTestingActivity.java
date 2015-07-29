@@ -1,4 +1,4 @@
-package com.wen.database;
+package com.example.wen.foodmenuprinter;
 
 import android.app.AlertDialog;
 import android.database.Cursor;
@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.wen.foodmenuprinter.R;
+import com.wen.database.DatabaseAccess;
 
 public class DatabaseTestingActivity extends ActionBarActivity {
 

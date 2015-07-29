@@ -3,14 +3,14 @@ package com.wen.database.model;
 /**
  * Created by Wen on 7/27/2015.
  */
-public class StaticElements {
+public class TaxRate {
     private Long id;
     private Double taxRate;
 
-    public StaticElements() {
+    public TaxRate() {
     }
 
-    public StaticElements(Long id, Double taxRate) {
+    public TaxRate(Long id, Double taxRate) {
         this.id = id;
         this.taxRate = taxRate;
     }

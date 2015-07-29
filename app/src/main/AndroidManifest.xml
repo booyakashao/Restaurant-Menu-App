@@ -17,8 +17,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.wen.database.DatabaseTestingActivity"
+            android:name=".DatabaseTestingActivity"
             android:label="@string/title_activity_database_testing" >
+        </activity>
+        <activity
+            android:name=".MainMenuActivity"
+            android:label="@string/title_activity_main_menu" >
         </activity>
     </application>
 

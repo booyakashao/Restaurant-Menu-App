@@ -7,7 +7,7 @@ import android.view.Menu;
  */
 public class OrderItems {
     private Long id;
-    private Orders order_instance;
+    private Orders order_item;
     private Menu_Item menu_instance;
     private Integer quantity;
 
@@ -17,7 +17,7 @@ public class OrderItems {
 
     public OrderItems(Long id, Orders order_instance, Menu_Item menu_instance, Integer quantity) {
         this.id = id;
-        this.order_instance = order_instance;
+        this.order_item = order_instance;
         this.menu_instance = menu_instance;
         this.quantity = quantity;
     }
@@ -30,12 +30,12 @@ public class OrderItems {
         this.id = id;
     }
 
-    public Orders getOrder_instance() {
-        return order_instance;
+    public Orders getOrder_item() {
+        return order_item;
     }
 
-    public void setOrder_instance(Orders order_instance) {
-        this.order_instance = order_instance;
+    public void setOrder_item(Orders order_item) {
+        this.order_item = order_item;
     }
 
     public Menu_Item getMenu_instance() {
