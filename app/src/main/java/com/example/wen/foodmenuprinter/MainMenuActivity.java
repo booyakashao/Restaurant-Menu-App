@@ -19,6 +19,9 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        //Set up DAOs
+        menuDAO = new MenuDAO(this);
+
         if(menuDAO.doesMenusExist()) {
             Toast.makeText(MainMenuActivity.this, "Menu Exists", Toast.LENGTH_LONG).show();
         } else {
