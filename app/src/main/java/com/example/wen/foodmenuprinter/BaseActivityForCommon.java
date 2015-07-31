@@ -40,11 +40,8 @@ public class BaseActivityForCommon extends AppCompatActivity {
 
         switch(id) {
             case R.id.create_new_menu_option:
-                Intent createMenuActivity = new Intent(this, CreateMenuActivity.class);
-                this.startActivity(createMenuActivity);
-                break;
-            case R.id.choose_menu_option:
-                Toast.makeText(this, "Choose Menu Option selected", Toast.LENGTH_LONG).show();
+                Intent createMenuItemActivity = new Intent(this, CreateMenuItemActivity.class);
+                this.startActivity(createMenuItemActivity);
                 break;
             case R.id.edit_menu_option:
                 Toast.makeText(this, "Edit menu Option selected", Toast.LENGTH_LONG).show();

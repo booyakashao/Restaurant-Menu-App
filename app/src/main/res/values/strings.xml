@@ -6,19 +6,19 @@
 
     <string name="title_activity_database_testing">DatabaseTestingActivity</string>
     <string name="title_activity_main_menu">MainMenuActivity</string>
+	<string name="title_activity_create_menu_item">CreateMenuActivity</string>
 
     <string name="create_menu_button_text">Create Menu</string>
     <string name="open_menu_button_text">Open Menu</string>
 
-    <string name="create_new_menu_option">Create New Menu</string>
-    <string name="choose_menu_option">Choose Menu</string>
+    <string name="create_new_menu_item_option">Create New Menu Item</string>
     <string name="edit_menu_option">Edit Menu</string>
     <string name="delete_menu_option">Delete Menu</string>
-    <string name="title_activity_create_menu">CreateMenuActivity</string>
+    
 
-    <string name="create_new_menu_header">Create New Menu</string>
-    <string name="create_new_menu_subtitle">Enter name for new menu</string>
-    <string name="create_menu_submit_button">Create Menu</string>
+    <string name="create_new_menu_item_header">Create New Menu Item</string>
+    <string name="create_new_menu_item_subtitle">Enter name for new menu item</string>
+    <string name="create_menu_item_submit_button">Create Menu Item</string>
 
     <string name="hello_world">Hello world!</string>
-</resources>
+</resources>title_activity_create_menu_item

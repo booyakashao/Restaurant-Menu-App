@@ -25,8 +25,8 @@
             android:label="@string/title_activity_main_menu" >
         </activity>
         <activity
-            android:name=".CreateMenuActivity"
-            android:label="@string/title_activity_create_menu" >
+            android:name=".CreateMenuItemActivity"
+            android:label="@string/title_activity_create_menu_item" >
         </activity>
     </application>
 
