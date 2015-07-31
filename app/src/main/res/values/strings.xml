@@ -16,5 +16,9 @@
     <string name="delete_menu_option">Delete Menu</string>
     <string name="title_activity_create_menu">CreateMenuActivity</string>
 
+    <string name="create_new_menu_header">Create New Menu</string>
+    <string name="create_new_menu_subtitle">Enter name for new menu</string>
+    <string name="create_menu_submit_button">Create Menu</string>
+
     <string name="hello_world">Hello world!</string>
 </resources>

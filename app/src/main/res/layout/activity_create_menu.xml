@@ -6,4 +6,45 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.wen.foodmenuprinter.CreateMenuActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/create_new_menu_header"
+        android:id="@+id/create_new_menu_header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_new_menu_subtitle"
+        android:id="@+id/create_new_menu_subtitle"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/create_new_menu_header"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name_for_new_menu"
+        android:layout_below="@+id/create_new_menu_subtitle"
+        android:layout_alignLeft="@+id/create_new_menu_header"
+        android:layout_alignStart="@+id/create_new_menu_header"
+        android:layout_marginTop="41dp"
+        android:layout_alignRight="@+id/create_new_menu_subtitle"
+        android:layout_alignEnd="@+id/create_new_menu_subtitle"
+        android:background="#fff2fff0"
+        android:elevation="@dimen/abc_text_size_menu_material" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_menu_submit_button"
+        android:id="@+id/create_menu_button"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+
 </RelativeLayout>
