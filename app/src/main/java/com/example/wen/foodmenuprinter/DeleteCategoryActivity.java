@@ -1,11 +1,10 @@
 package com.example.wen.foodmenuprinter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,10 +16,10 @@ import com.wen.database.dao.CategoryDAO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeleteCategoryActivity extends AppCompatActivity {
+public class DeleteCategoryActivity extends Activity {
 
     Spinner categorySelectorSpinner;
-    Button DeleteCategoryDialogButton;
+    Button deleteCategoryDialogButton;
     CategoryDAO categoryDAO;
     private static final int CategoryDeleteActivityResultCode = 2;
 
@@ -31,7 +30,8 @@ public class DeleteCategoryActivity extends AppCompatActivity {
 
         categoryDAO = new CategoryDAO(this);
 
-        DeleteCategoryDialogButton = (Button) findViewById(R.id.delete_category_dialog_button);
+        deleteCategoryDialogButton = (Button) findViewById(R.id.delete_category_dialog_button);
+        deleteCategoryDialogButton.setOnClickListener(deleteCategoryOnClickListener());
 
         categorySelectorSpinner = (Spinner) findViewById(R.id.category_spinner_for_delete);
         categorySelectorSpinner.setAdapter(populateSpinner());
@@ -57,7 +57,7 @@ public class DeleteCategoryActivity extends AppCompatActivity {
         return category_spinner_array_adapter;
     }
 
-    private View.OnClickListener addCategoryOnClickListener() {
+    private View.OnClickListener deleteCategoryOnClickListener() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
