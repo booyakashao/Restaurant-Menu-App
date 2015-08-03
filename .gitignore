@@ -29,3 +29,5 @@ app/app.iml
 .idea/runConfigurations.xml
 
 .idea/vcs.xml
+
+*.iml
