@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.wen.database.dao.CategoryDAO;
 import com.wen.database.dao.MenuDAO;
 
 /**
@@ -15,6 +16,9 @@ import com.wen.database.dao.MenuDAO;
 public class BaseActivityForCommon extends AppCompatActivity {
 
     protected MenuDAO menuDAO;
+    protected CategoryDAO categoryDAO;
+    protected static final int CategoryEntryActivityResultCode = 1;
+    protected static final int CategoryDeleteActivityResultCode = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,7 @@ public class BaseActivityForCommon extends AppCompatActivity {
 
         //Set up DAOs
         menuDAO = new MenuDAO(this);
+        categoryDAO = new CategoryDAO(this);
     }
 
     @Override

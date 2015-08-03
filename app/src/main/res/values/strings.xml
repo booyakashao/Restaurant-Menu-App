@@ -4,21 +4,34 @@
 
     <string name="splash_placeholder">Food Menu Printer Splash Placeholder</string>
 
+    <!-- Titles -->
     <string name="title_activity_database_testing">DatabaseTestingActivity</string>
     <string name="title_activity_main_menu">MainMenuActivity</string>
 	<string name="title_activity_create_menu_item">CreateMenuActivity</string>
 
+    <!-- Button Text -->
     <string name="create_menu_button_text">Create Menu</string>
     <string name="open_menu_button_text">Open Menu</string>
+    <string name="add_category_button_text">Add Category</string>
+    <string name="delete_category_button_text">Delete Category</string>
+    <string name="create_menu_item_submit_button">Create Menu Item</string>
 
+    <!-- Menu Options Text -->
     <string name="create_new_menu_item_option">Create New Menu Item</string>
     <string name="edit_menu_option">Edit Menu</string>
     <string name="delete_menu_option">Delete Menu</string>
-    
 
+    <!-- Header Texts -->
     <string name="create_new_menu_item_header">Create New Menu Item</string>
     <string name="create_new_menu_item_subtitle">Enter name for new menu item</string>
-    <string name="create_menu_item_submit_button">Create Menu Item</string>
+    <string name="category_selector_header">Category</string>
+
+    <!-- Hint Text -->
+    <string name="new_category_hint">Enter name of new category here</string>
 
     <string name="hello_world">Hello world!</string>
-</resources>title_activity_create_menu_item
+    <string name="title_activity_category_entry">CategoryEntryActivity</string>
+    <string name="title_activity_delete_category">DeleteCategoryActivity</string>
+
+
+</resources>

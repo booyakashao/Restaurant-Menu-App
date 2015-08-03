@@ -39,7 +39,7 @@ public class DatabaseUtilities extends SQLiteOpenHelper {
     public static final String TAX_RATE_COL_2 = "tax_rate";
 
     public DatabaseUtilities(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 2);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
@@ -68,7 +68,7 @@ public class DatabaseUtilities extends SQLiteOpenHelper {
                 CATEGORY_COL_1 +
                 " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 CATEGORY_COL_2 +
-                " TEXT" +
+                " TEXT UNIQUE" +
                 ")");
 
         db.execSQL("create table " +

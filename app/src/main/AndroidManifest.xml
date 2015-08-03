@@ -28,6 +28,16 @@
             android:name=".CreateMenuItemActivity"
             android:label="@string/title_activity_create_menu_item" >
         </activity>
+        <activity
+            android:name=".CategoryEntryActivity"
+            android:label="@string/title_activity_category_entry"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name=".DeleteCategoryActivity"
+            android:label="@string/title_activity_delete_category"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
     </application>
 
 </manifest>

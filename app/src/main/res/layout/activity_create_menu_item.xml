@@ -41,10 +41,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Category"
-        android:id="@+id/textView4"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:text="@string/category_selector_header"
+        android:id="@+id/category_label"
+        android:layout_below="@+id/name_for_new_menu_item"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -52,9 +53,40 @@
         android:layout_height="wrap_content"
         android:text="@string/create_menu_item_submit_button"
         android:id="@+id/create_menu_item_button"
-        android:layout_below="@+id/name_for_new_menu_item"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="117dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/category_spinner"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/category_label"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:spinnerMode="dropdown"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_category_button_text"
+        android:id="@+id/add_category_button"
+        android:layout_below="@+id/category_spinner"
+        android:layout_toLeftOf="@+id/category_label"
+        android:layout_toStartOf="@+id/category_label" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_category_button_text"
+        android:id="@+id/delete_category_button"
+        android:layout_below="@+id/category_spinner"
+        android:layout_toRightOf="@+id/category_label"
+        android:layout_toEndOf="@+id/category_label" />
 
 
 </RelativeLayout>
