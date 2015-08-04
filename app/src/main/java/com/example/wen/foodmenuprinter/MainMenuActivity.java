@@ -47,6 +47,8 @@ public class MainMenuActivity extends BaseActivityForCommon {
             openMenuButtonParams.addRule(RelativeLayout.CENTER_VERTICAL);
             openMenuButton.setLayoutParams(openMenuButtonParams);
 
+            openMenuButton.setOnClickListener(openMenuOnClickListener());
+
             mainActivityLayout.addView(openMenuButton);
         }
     }
@@ -57,6 +59,17 @@ public class MainMenuActivity extends BaseActivityForCommon {
             public void onClick(View v) {
                 Intent createMenuActivity = new Intent(MainMenuActivity.this, CreateMenuItemActivity.class);
                 MainMenuActivity.this.startActivity(createMenuActivity);
+                finish();
+            }
+        };
+    }
+
+    private View.OnClickListener openMenuOnClickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openMenuActivity = new Intent(MainMenuActivity.this, CategoryListActivity.class);
+                MainMenuActivity.this.startActivity(openMenuActivity);
                 finish();
             }
         };

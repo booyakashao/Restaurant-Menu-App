@@ -9,6 +9,8 @@
 	<string name="title_activity_create_menu_item">Create Menu Item</string>
     <string name="title_activity_category_entry">Category Entry</string>
     <string name="title_activity_delete_category">Delete Category</string>
+    <string name="title_category_list">Menu Items</string>
+    <string name="title_category_detail">Category Detail</string>
 
     <!-- Button Text -->
     <string name="create_menu_button_text">Create Menu Item</string>
@@ -37,4 +39,5 @@
     <string name="new_menu_item_price_hint">Enter price here</string>
 
     <string name="hello_world">Hello world!</string>
+
 </resources>

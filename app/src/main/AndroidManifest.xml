@@ -35,6 +35,18 @@
             android:label="@string/title_activity_delete_category"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
+        <activity
+            android:name=".CategoryListActivity"
+            android:label="@string/title_category_list" >
+        </activity>
+        <activity
+            android:name=".CategoryDetailActivity"
+            android:label="@string/title_category_detail"
+            android:parentActivityName=".CategoryListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.wen.foodmenuprinter.CategoryListActivity" />
+        </activity>
     </application>
 
 </manifest>
