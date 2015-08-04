@@ -1,6 +1,7 @@
 package com.example.wen.foodmenuprinter;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
@@ -8,6 +9,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.wen.foodmenuprinter.dummy.DummyContent;
+import com.wen.database.CategoriesArrayAdapter;
+import com.wen.database.dao.CategoryDAO;
+import com.wen.database.model.Category;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A list fragment representing a list of Menu_Items. This fragment
@@ -19,6 +26,8 @@ import com.example.wen.foodmenuprinter.dummy.DummyContent;
  * interface.
  */
 public class CategoryListFragment extends ListFragment {
+
+    protected CategoryDAO categoryDAO;
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -69,13 +78,17 @@ public class CategoryListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        categoryDAO = new CategoryDAO(getActivity());
 
-        // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
-                getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                DummyContent.ITEMS));
+        List<Category> categories = new ArrayList<Category>();
+        Cursor categoriesCursor = categoryDAO.getAllData();
+        if(categoriesCursor.getCount() > 0) {
+            while(categoriesCursor.moveToNext()) {
+                categories.add(new Category(categoriesCursor.getInt(0), categoriesCursor.getString(1)));
+            }
+        }
+
+        setListAdapter(new CategoriesArrayAdapter<Category>(getActivity(), categories));
     }
 
     @Override
