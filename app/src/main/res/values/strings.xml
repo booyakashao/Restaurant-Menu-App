@@ -6,7 +6,7 @@
 
     <!-- Titles -->
     <string name="title_activity_main_menu">Main Menu</string>
-	<string name="title_activity_create_menu_item">Create Menu</string>
+	<string name="title_activity_create_menu_item">Create Menu Item</string>
     <string name="title_activity_category_entry">Category Entry</string>
     <string name="title_activity_delete_category">Delete Category</string>
 
@@ -21,6 +21,7 @@
     <string name="create_new_menu_item_option">Create New Menu Item</string>
     <string name="edit_menu_option">Edit Menu</string>
     <string name="delete_menu_option">Delete Menu</string>
+    <string name="main_menu_option">Main Menu</string>
 
     <!-- Header Texts -->
     <string name="create_new_menu_item_header">Create New Menu Item</string>
@@ -30,7 +31,10 @@
     <string name="create_new_menu_item_price_header">Menu Price</string>
 
     <!-- Hint Text -->
+    <string name="new_menu_item_name_hint">Enter name of Menu Item</string>
+    <string name="new_menu_item_description_hint">Enter name of Menu Item Description here.</string>
     <string name="new_category_hint">Enter name of new category here</string>
+    <string name="new_menu_item_price_hint">Enter price here</string>
 
     <string name="hello_world">Hello world!</string>
 </resources>

@@ -18,32 +18,36 @@ public class MainMenuActivity extends BaseActivityForCommon {
 
         mainActivityLayout = (RelativeLayout) findViewById(R.id.main_menu_layout);
 
+        Button createMenuButton = new Button(this);
+        createMenuButton.setText(R.string.create_menu_button_text);
+        createMenuButton.setId(R.id.create_menu_button);
+        createMenuButton.setTag("createMenuButton");
+
+        RelativeLayout.LayoutParams createMenuButtonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        createMenuButtonParams.addRule(RelativeLayout.ALIGN_LEFT);
+        createMenuButtonParams.addRule(RelativeLayout.CENTER_VERTICAL);
+        createMenuButtonParams.setMargins(190, 0, 0, 0);
+        createMenuButton.setLayoutParams(createMenuButtonParams);
+
+        createMenuButton.setOnClickListener(createMenuOnClickListener());
+
+        mainActivityLayout.addView(createMenuButton);
+
         if(menuDAO.doesMenusExist()) {
             Button openMenuButton = new Button(this);
             openMenuButton.setText(R.string.open_menu_button_text);
+            openMenuButton.setId(R.id.open_menu_button);
             openMenuButton.setTag("openMenuButton");
 
             RelativeLayout.LayoutParams openMenuButtonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
                     RelativeLayout.LayoutParams.WRAP_CONTENT);
+            openMenuButtonParams.addRule(RelativeLayout.RIGHT_OF, createMenuButton.getId());
+            openMenuButtonParams.addRule(RelativeLayout.END_OF, createMenuButton.getId());
             openMenuButtonParams.addRule(RelativeLayout.CENTER_VERTICAL);
-            openMenuButtonParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
             openMenuButton.setLayoutParams(openMenuButtonParams);
 
             mainActivityLayout.addView(openMenuButton);
-        } else {
-            Button createMenuButton = new Button(this);
-            createMenuButton.setText(R.string.create_menu_button_text);
-            createMenuButton.setTag("createMenuButton");
-
-            RelativeLayout.LayoutParams createMenuButtonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
-                    RelativeLayout.LayoutParams.WRAP_CONTENT);
-            createMenuButtonParams.addRule(RelativeLayout.CENTER_VERTICAL);
-            createMenuButtonParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-            createMenuButton.setLayoutParams(createMenuButtonParams);
-
-            createMenuButton.setOnClickListener(createMenuOnClickListener());
-
-            mainActivityLayout.addView(createMenuButton);
         }
     }
 
@@ -53,6 +57,7 @@ public class MainMenuActivity extends BaseActivityForCommon {
             public void onClick(View v) {
                 Intent createMenuActivity = new Intent(MainMenuActivity.this, CreateMenuItemActivity.class);
                 MainMenuActivity.this.startActivity(createMenuActivity);
+                finish();
             }
         };
     }

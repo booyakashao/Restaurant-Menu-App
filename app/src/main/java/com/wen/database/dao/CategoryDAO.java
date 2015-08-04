@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.wen.database.DatabaseUtilities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Wen on 8/2/2015.
  */
@@ -36,10 +39,30 @@ public class CategoryDAO extends DatabaseUtilities {
         return db.delete(CATEGORY_TABLE_NAME, CATEGORY_COL_2 + " = ?", new String[] {category});
     }
 
+    public Integer getCategoryByName(String categoryName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        List<String> tableColumns = new ArrayList<String>();
+        tableColumns.add("id");
+
+        String whereClause = "name = ?";
+
+        List<String> whereArgs = new ArrayList<String>();
+        whereArgs.add(categoryName);
+
+        Cursor cursor =  db.query(CATEGORY_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), whereClause, whereArgs.toArray(new String[whereArgs.size()]), null, null, null);
+        cursor.moveToFirst();
+
+        return cursor.getInt(0);
+    }
+
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor res = db.rawQuery("select * from " + CATEGORY_TABLE_NAME, null);
+        List<String> tableColumns = new ArrayList<String>();
+        tableColumns.add("*");
+
+        Cursor res =  db.query(CATEGORY_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), null, null, null, null, null);
 
         return res;
     }

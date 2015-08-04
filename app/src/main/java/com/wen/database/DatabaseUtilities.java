@@ -18,7 +18,6 @@ public class DatabaseUtilities extends SQLiteOpenHelper {
     public static final String MENU_ITEM_COL_3 = "description";
     public static final String MENU_ITEM_COL_4 = "category_id";
     public static final String MENU_ITEM_COL_5 = "price";
-    public static final String MENU_ITEM_COL_6 = "is_current_menu";
 
     public static final String CATEGORY_TABLE_NAME = "category";
     public static final String CATEGORY_COL_1 = "id";
@@ -39,7 +38,7 @@ public class DatabaseUtilities extends SQLiteOpenHelper {
     public static final String TAX_RATE_COL_2 = "tax_rate";
 
     public DatabaseUtilities(Context context) {
-        super(context, DATABASE_NAME, null, 2);
+        super(context, DATABASE_NAME, null, 3);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
@@ -57,9 +56,7 @@ public class DatabaseUtilities extends SQLiteOpenHelper {
                 MENU_ITEM_COL_4 +
                 " INTEGER, " +
                 MENU_ITEM_COL_5 +
-                " REAL, " +
-                MENU_ITEM_COL_6 +
-                " INTEGER"+
+                " REAL " +
                 ")");
 
         db.execSQL("create table " +

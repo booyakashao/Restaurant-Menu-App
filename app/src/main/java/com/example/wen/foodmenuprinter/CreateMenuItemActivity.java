@@ -28,6 +28,8 @@ public class CreateMenuItemActivity extends BaseActivityForCommon {
 
 
     EditText newMenuName;
+    EditText newMenuDescription;
+    EditText newMenuPrice;
     Button submitNewMenuButton;
     Button createNewCategoryButton;
     Button deleteCategoryButton;
@@ -38,7 +40,9 @@ public class CreateMenuItemActivity extends BaseActivityForCommon {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_menu_item);
 
-        newMenuName = (EditText) findViewById(R.id.name_for_new_menu_item);
+        newMenuName = (EditText) findViewById(R.id.new_menu_item_name);
+        newMenuDescription = (EditText) findViewById(R.id.new_menu_item_description);
+        newMenuPrice = (EditText) findViewById(R.id.new_menu_item_price);
         submitNewMenuButton = (Button) findViewById(R.id.create_menu_item_button);
         submitNewMenuButton.setOnClickListener(createMenuOnClickListener());
         createNewCategoryButton = (Button) findViewById(R.id.add_category_button);
@@ -76,7 +80,21 @@ public class CreateMenuItemActivity extends BaseActivityForCommon {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               //create Menu
+                String name = newMenuName.getText().toString();
+                String description = newMenuDescription.getText().toString();
+                String categoryName = categorySelectorSpinner.getSelectedItem().toString();
+                Double price = Double.parseDouble(newMenuPrice.getText().toString());
+                Integer categoryId = categoryDAO.getCategoryByName(categoryName);
+
+                if(menuDAO.insertNewMenuItem(name, description, categoryId, price)) {
+                    Toast.makeText(v.getContext(), "Menu item was created", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(v.getContext(), "Menu item was not created", Toast.LENGTH_LONG).show();
+                }
+
+                Intent mainMenuIntent = new Intent(v.getContext(), MainMenuActivity.class);
+                startActivity(mainMenuIntent);
+                finish();
             }
         };
     }
