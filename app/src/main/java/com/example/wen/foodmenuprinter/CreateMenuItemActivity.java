@@ -86,7 +86,7 @@ public class CreateMenuItemActivity extends BaseActivityForCommon {
             @Override
             public void onClick(View v) {
                 Intent addCategoryEntryIntent = new Intent(v.getContext(), CategoryEntryActivity.class);
-                v.getContext().startActivity(addCategoryEntryIntent);
+                startActivityForResult(addCategoryEntryIntent, CategoryEntryActivityResultCode);
 
             }
         };
@@ -97,7 +97,7 @@ public class CreateMenuItemActivity extends BaseActivityForCommon {
             @Override
             public void onClick(View v) {
                 Intent deleteCategoryEntryIntent = new Intent(v.getContext(), DeleteCategoryActivity.class);
-                v.getContext().startActivity(deleteCategoryEntryIntent);
+                startActivityForResult(deleteCategoryEntryIntent, CategoryDeleteActivityResultCode);
 
             }
         };
@@ -107,10 +107,14 @@ public class CreateMenuItemActivity extends BaseActivityForCommon {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch(requestCode) {
             case CategoryEntryActivityResultCode:
-                categorySelectorSpinner.setAdapter(populateSpinner());
+                if (resultCode == RESULT_OK) {
+                    categorySelectorSpinner.setAdapter(populateSpinner());
+                }
                 break;
             case CategoryDeleteActivityResultCode:
-                categorySelectorSpinner.setAdapter(populateSpinner());
+                if (resultCode == RESULT_OK) {
+                    categorySelectorSpinner.setAdapter(populateSpinner());
+                }
                 break;
             default:
                 Toast.makeText(this, "Activity not recognized", Toast.LENGTH_SHORT).show();

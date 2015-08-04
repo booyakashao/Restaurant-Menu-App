@@ -80,7 +80,7 @@ public class DeleteCategoryActivity extends Activity {
     private void executeDone() {
         Intent resultIntent = new Intent();
         resultIntent.putExtra("deletedCategory", DeleteCategoryActivity.this.categorySelectorSpinner.getSelectedItem().toString());
-        setResult(CategoryDeleteActivityResultCode, resultIntent);
+        setResult(RESULT_OK, resultIntent);
         finish();
     }
 

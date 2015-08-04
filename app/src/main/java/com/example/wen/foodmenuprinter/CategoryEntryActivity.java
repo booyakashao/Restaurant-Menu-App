@@ -75,7 +75,7 @@ public class CategoryEntryActivity extends Activity {
     private void executeDone() {
         Intent resultIntent = new Intent();
         resultIntent.putExtra("newCategory", CategoryEntryActivity.this.categoryTextEntry.getText().toString());
-        setResult(CategoryEntryActivityResultCode, resultIntent);
+        setResult(RESULT_OK, resultIntent);
         finish();
     }
 
