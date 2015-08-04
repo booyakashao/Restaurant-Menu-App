@@ -32,13 +32,15 @@ public class DatabaseUtilities extends SQLiteOpenHelper {
     public static final String ORDERS_TABLE_NAME = "orders";
     public static final String ORDERS_COL_1 = "id";
     public static final String ORDERS_COL_2 = "create_time";
+    public static final String ORDERS_COL_3 = "fulfilled";
+    public static final String ORDERS_COL_4 = "current";
 
     public static final String TAX_RATE_TABLE_NAME = "tax_rate";
     public static final String TAX_RATE_COL_1 = "id";
     public static final String TAX_RATE_COL_2 = "tax_rate";
 
     public DatabaseUtilities(Context context) {
-        super(context, DATABASE_NAME, null, 3);
+        super(context, DATABASE_NAME, null, 4);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
@@ -87,7 +89,11 @@ public class DatabaseUtilities extends SQLiteOpenHelper {
                 ORDERS_COL_1 +
                 " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 ORDERS_COL_2 +
-                " REAL" +
+                " REAL," +
+                ORDERS_COL_3 +
+                " INTEGER," +
+                ORDERS_COL_4 +
+                " INTEGER" +
                 ")");
 
         db.execSQL("create table " +
