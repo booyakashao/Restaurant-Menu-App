@@ -11,7 +11,7 @@
     <string name="title_activity_delete_category">Delete Category</string>
 
     <!-- Button Text -->
-    <string name="create_menu_button_text">Create Menu</string>
+    <string name="create_menu_button_text">Create Menu Item</string>
     <string name="open_menu_button_text">Open Menu</string>
     <string name="add_category_button_text">Add Category</string>
     <string name="delete_category_button_text">Delete Category</string>
@@ -26,6 +26,8 @@
     <string name="create_new_menu_item_header">Create New Menu Item</string>
     <string name="create_new_menu_item_subtitle">Enter name for new menu item</string>
     <string name="category_selector_header">Category</string>
+    <string name="create_new_menu_item_description_header">Description for New Menu Item</string>
+    <string name="create_new_menu_item_price_header">Menu Price</string>
 
     <!-- Hint Text -->
     <string name="new_category_hint">Enter name of new category here</string>
