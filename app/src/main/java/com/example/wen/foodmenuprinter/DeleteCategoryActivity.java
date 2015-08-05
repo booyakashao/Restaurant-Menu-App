@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.wen.database.dao.CategoryDAO;
+import com.wen.database.model.Category;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,14 +39,14 @@ public class DeleteCategoryActivity extends Activity {
     }
 
     private ArrayAdapter<String> populateSpinner() {
-        Cursor categoryCursor = categoryDAO.getAllData();
+        List<Category> allCategories = categoryDAO.getAllCategories();
 
         List<String> category_spinner_string_list = new ArrayList<String>();
-        if(categoryCursor.getCount() == 0) {
+        if(allCategories.size() == 0) {
             category_spinner_string_list.add("No categories found to delete");
         } else {
-            while(categoryCursor.moveToNext()) {
-                category_spinner_string_list.add(categoryCursor.getString(1));
+            for(Category currentCategory : allCategories) {
+                category_spinner_string_list.add(currentCategory.getName());
             }
         }
 

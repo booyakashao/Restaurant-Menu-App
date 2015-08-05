@@ -1,89 +1,97 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:orientation="vertical"
-    tools:context="com.example.wen.foodmenuprinter.CreateMenuItemActivity">
+    android:layout_gravity="center"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/create_new_menu_item_header"
-        android:id="@+id/create_new_menu_item_header"
-        android:layout_marginTop="44dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/new_menu_item_name"
-        android:hint="@string/new_menu_item_name_hint"
-        android:layout_marginTop="41dp"
-        android:background="#fff2fff0" />
-
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:layout_marginTop="41dp"
-        android:hint="@string/new_menu_item_description_hint"
-        android:id="@+id/new_menu_item_description" />
+        xmlns:tools="http://schemas.android.com/tools"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        tools:context="com.example.wen.foodmenuprinter.CreateMenuItemActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/category_selector_header"
-        android:id="@+id/category_label"
-        android:layout_marginTop="27dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/create_new_menu_item_header"
+            android:id="@+id/create_new_menu_item_header"
+            android:layout_marginTop="44dp" />
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/category_spinner"
-        android:layout_marginTop="40dp"
-        android:spinnerMode="dropdown" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/new_menu_item_name"
+            android:hint="@string/new_menu_item_name_hint"
+            android:layout_marginTop="41dp"
+            android:background="#fff2fff0" />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:layout_marginTop="41dp"
+            android:hint="@string/new_menu_item_description_hint"
+            android:id="@+id/new_menu_item_description" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/category_selector_header"
+            android:id="@+id/category_label"
+            android:layout_marginTop="27dp" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/category_spinner"
+            android:layout_marginTop="40dp"
+            android:spinnerMode="dropdown" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_category_button_text"
+                android:id="@+id/add_category_button" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/add_category_button"
+                android:layout_toRightOf="@+id/add_category_button"
+                android:text="@string/delete_category_button_text"
+                android:id="@+id/delete_category_button" />
+
+        </RelativeLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="@string/new_menu_item_price_hint"
+            android:ems="10"
+            android:id="@+id/new_menu_item_price" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_category_button_text"
-            android:id="@+id/add_category_button" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/add_category_button"
-            android:layout_toRightOf="@+id/add_category_button"
-            android:text="@string/delete_category_button_text"
-            android:id="@+id/delete_category_button" />
-
-    </RelativeLayout>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:hint="@string/new_menu_item_price_hint"
-        android:ems="10"
-        android:id="@+id/new_menu_item_price" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_menu_item_submit_button"
-        android:id="@+id/create_menu_item_button" />
+            android:text="@string/create_menu_item_submit_button"
+            android:id="@+id/create_menu_item_button" />
 
 
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

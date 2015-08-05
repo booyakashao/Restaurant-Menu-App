@@ -5,9 +5,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.wen.foodmenuprinter.dummy.DummyContent;
+import com.wen.database.dao.MenuDAO;
+import com.wen.database.model.Menu_Item;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A fragment representing a single Category detail screen.
@@ -16,16 +21,14 @@ import com.example.wen.foodmenuprinter.dummy.DummyContent;
  * on handsets.
  */
 public class CategoryDetailFragment extends Fragment {
+    MenuDAO menuDAO;
+    List<Menu_Item> menu_items;
+
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.
      */
-    public static final String ARG_ITEM_ID = "item_id";
-
-    /**
-     * The dummy content this fragment is presenting.
-     */
-    private DummyContent.DummyItem mItem;
+    public static final String ARG_ITEM_ID = "category_id";
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -37,23 +40,32 @@ public class CategoryDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        menu_items = new ArrayList<Menu_Item>();
+        menuDAO = new MenuDAO(getActivity());
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+
+            //Get Menu Items based on Category Id
+            menu_items =  menuDAO.getMenuItemsByCategoryId(Integer.parseInt(getArguments().getString(ARG_ITEM_ID)));
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_category_detail, container, false);
 
-        // Show the dummy content as text in a TextView.
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.category_detail)).setText(mItem.content);
+        LinearLayout fragmentLinearLayout = (LinearLayout) rootView.findViewById(R.id.fragment_category_detail_linear_layout);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        for(Menu_Item currentMenuItem : menu_items) {
+            TextView newTextView = new TextView(getActivity());
+            newTextView.setText(currentMenuItem.getName());
+            newTextView.setId(TextView.generateViewId());
+            newTextView.setLayoutParams(params);
+            fragmentLinearLayout.addView(newTextView);
         }
 
         return rootView;

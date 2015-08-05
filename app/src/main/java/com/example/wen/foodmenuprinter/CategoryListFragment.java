@@ -1,19 +1,15 @@
 package com.example.wen.foodmenuprinter;
 
 import android.app.Activity;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.wen.foodmenuprinter.dummy.DummyContent;
 import com.wen.database.CategoriesArrayAdapter;
 import com.wen.database.dao.CategoryDAO;
 import com.wen.database.model.Category;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +24,7 @@ import java.util.List;
 public class CategoryListFragment extends ListFragment {
 
     protected CategoryDAO categoryDAO;
+    protected List<Category> categories;
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -80,15 +77,10 @@ public class CategoryListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
         categoryDAO = new CategoryDAO(getActivity());
 
-        List<Category> categories = new ArrayList<Category>();
-        Cursor categoriesCursor = categoryDAO.getAllData();
-        if(categoriesCursor.getCount() > 0) {
-            while(categoriesCursor.moveToNext()) {
-                categories.add(new Category(categoriesCursor.getInt(0), categoriesCursor.getString(1)));
-            }
-        }
+        categories = categoryDAO.getAllCategories();
 
-        setListAdapter(new CategoriesArrayAdapter<Category>(getActivity(), categories));
+        CategoriesArrayAdapter categoriesArrayAdapter = new CategoriesArrayAdapter<Category>(getActivity(), categories);
+        setListAdapter(categoriesArrayAdapter);
     }
 
     @Override
@@ -128,7 +120,7 @@ public class CategoryListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+        mCallbacks.onItemSelected(categories.get(position).getId().toString());
     }
 
     @Override

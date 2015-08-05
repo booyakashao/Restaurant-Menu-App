@@ -4,7 +4,7 @@ package com.wen.database.model;
  * Created by Wen on 7/27/2015.
  */
 public class Menu_Item {
-    private Long id;
+    private Integer id;
     private String name;
     private String description;
     private Double price;
@@ -13,7 +13,7 @@ public class Menu_Item {
     public Menu_Item() {
     }
 
-    public Menu_Item(Long id, String name, String description, Double price, Category category) {
+    public Menu_Item(Integer id, String name, String description, Double price, Category category) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -21,11 +21,11 @@ public class Menu_Item {
         this.category = category;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

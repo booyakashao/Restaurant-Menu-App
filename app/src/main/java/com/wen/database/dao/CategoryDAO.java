@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.wen.database.DatabaseUtilities;
+import com.wen.database.model.Category;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class CategoryDAO extends DatabaseUtilities {
         List<String> tableColumns = new ArrayList<String>();
         tableColumns.add("id");
 
-        String whereClause = "name = ?";
+        String whereClause = CATEGORY_COL_2 + " = ?";
 
         List<String> whereArgs = new ArrayList<String>();
         whereArgs.add(categoryName);
@@ -56,14 +57,18 @@ public class CategoryDAO extends DatabaseUtilities {
         return cursor.getInt(0);
     }
 
-    public Cursor getAllData() {
+    public List<Category> getAllCategories() {
         SQLiteDatabase db = this.getWritableDatabase();
+        List<Category> categoriesToReturn = new ArrayList<Category>();
 
         List<String> tableColumns = new ArrayList<String>();
         tableColumns.add("*");
 
-        Cursor res =  db.query(CATEGORY_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), null, null, null, null, null);
+        Cursor categoryCursor = db.query(CATEGORY_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), null, null, null, null, null);
+        while (categoryCursor.moveToNext()) {
+            categoriesToReturn.add(new Category(categoryCursor.getInt(0), categoryCursor.getString(1)));
+        }
 
-        return res;
+        return categoriesToReturn;
     }
 }
