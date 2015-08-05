@@ -78,4 +78,12 @@ public class CategoryListActivity extends FragmentActivity
             startActivity(detailIntent);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent mainMenuIntent = new Intent(this, MainMenuActivity.class);
+        startActivity(mainMenuIntent);
+        finish();
+        super.onBackPressed();
+    }
 }

@@ -99,6 +99,14 @@ public class CreateMenuItemActivity extends BaseActivityForCommon {
         };
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent mainMenuIntent = new Intent(this, MainMenuActivity.class);
+        startActivity(mainMenuIntent);
+        finish();
+        super.onBackPressed();
+    }
+
     private View.OnClickListener createCategoryOnClickListener() {
         return new View.OnClickListener() {
             @Override
