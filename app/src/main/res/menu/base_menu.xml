@@ -5,6 +5,9 @@
 
     <item android:id="@+id/create_new_menu_option" android:title="@string/create_new_menu_item_option"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/open_menu_option" android:title="@string/open_menu_item_option"
+        android:visible="true"
+        android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/edit_menu_option" android:title="@string/edit_menu_option"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/delete_menu_option" android:title="@string/delete_menu_option"

@@ -21,6 +21,7 @@
 
     <!-- Menu Options Text -->
     <string name="create_new_menu_item_option">Create New Menu Item</string>
+    <string name="open_menu_item_option">Open Menu Item</string>
     <string name="edit_menu_option">Edit Menu</string>
     <string name="delete_menu_option">Delete Menu</string>
     <string name="main_menu_option">Main Menu</string>

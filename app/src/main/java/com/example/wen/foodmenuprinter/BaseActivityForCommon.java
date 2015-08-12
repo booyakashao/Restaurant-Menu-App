@@ -1,5 +1,6 @@
 package com.example.wen.foodmenuprinter;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,20 @@ public class BaseActivityForCommon extends AppCompatActivity {
         //Set up DAOs
         menuDAO = new MenuDAO(this);
         categoryDAO = new CategoryDAO(this);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        //Removes open menu option if menu items don't exist
+        MenuItem currentItem = menu.findItem(R.id.open_menu_option);
+        if(!menuDAO.doesMenusExist()) {
+
+            currentItem.setVisible(false);
+        } else {
+            currentItem.setVisible(true);
+        }
+
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
