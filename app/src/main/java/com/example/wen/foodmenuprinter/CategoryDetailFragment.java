@@ -14,9 +14,6 @@ import com.wen.database.dao.CategoryDAO;
 import com.wen.database.dao.MenuDAO;
 import com.wen.database.model.Menu_Item;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -75,14 +72,13 @@ public class CategoryDetailFragment extends Fragment {
     private void prepareListData() {
         listMenuItemHeader = new ArrayList<String>();
         listMenuItemSubView = new HashMap<String, List<String>>();
-        //DecimalFormat currencyFormat = new DecimalFormat("0.00");
 
         for(Menu_Item currentMenuItem : menu_items) {
             listMenuItemHeader.add(currentMenuItem.getName());
             List<String> detailList = new ArrayList<String>();
-            detailList.add("Description: " + currentMenuItem.getDescription());
-            detailList.add("Price: " + NumberFormat.getCurrencyInstance().format(currentMenuItem.getPrice()));
-            detailList.add("Category: " + categoryDAO.getCategoryById(currentMenuItem.getCategory().getId()).getName());
+            detailList.add(currentMenuItem.getDescription());
+            detailList.add(currentMenuItem.getPrice().toString());
+            detailList.add(categoryDAO.getCategoryById(currentMenuItem.getCategory().getId()).getName());
             listMenuItemSubView.put(currentMenuItem.getName(),detailList);
         }
     }

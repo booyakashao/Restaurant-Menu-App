@@ -1,7 +1,5 @@
 package com.wen.database.model;
 
-import java.math.BigDecimal;
-
 /**
  * Created by Wen on 7/27/2015.
  */
@@ -9,13 +7,13 @@ public class Menu_Item {
     private Integer id;
     private String name;
     private String description;
-    private BigDecimal price;
+    private Double price;
     private Category category;
 
     public Menu_Item() {
     }
 
-    public Menu_Item(Integer id, String name, String description, BigDecimal price, Category category) {
+    public Menu_Item(Integer id, String name, String description, Double price, Category category) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -47,11 +45,11 @@ public class Menu_Item {
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
