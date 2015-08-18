@@ -9,6 +9,7 @@ import com.wen.database.DatabaseUtilities;
 import com.wen.database.model.Category;
 import com.wen.database.model.Menu_Item;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,14 +40,14 @@ public class MenuDAO extends DatabaseUtilities {
         }
     }
 
-    public boolean insertNewMenuItem(String name, String description, Integer categoryId, Double price) {
+    public boolean insertNewMenuItem(String name, String description, Integer categoryId, BigDecimal price) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(MENU_ITEM_COL_2, name);
         contentValues.put(MENU_ITEM_COL_3, description);
         contentValues.put(MENU_ITEM_COL_4, categoryId);
-        contentValues.put(MENU_ITEM_COL_5, price);
+        contentValues.put(MENU_ITEM_COL_5, price.toPlainString());
 
         long result = db.insert(MENU_ITEM_TABLE_NAME, null, contentValues);
 
@@ -73,7 +74,7 @@ public class MenuDAO extends DatabaseUtilities {
         Cursor menuItemCursor = db.query(MENU_ITEM_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), whereClause, whereArgs.toArray(new String[whereArgs.size()]), null, null, null);
 
         while (menuItemCursor.moveToNext()) {
-            listOfAllMenuItems.add(new Menu_Item(menuItemCursor.getInt(0), menuItemCursor.getString(1), menuItemCursor.getString(2), menuItemCursor.getDouble(3), new Category(categoryId, null)));
+            listOfAllMenuItems.add(new Menu_Item(menuItemCursor.getInt(0), menuItemCursor.getString(1), menuItemCursor.getString(2), new BigDecimal(menuItemCursor.getString(4)), new Category(categoryId, null)));
         }
 
         return listOfAllMenuItems;

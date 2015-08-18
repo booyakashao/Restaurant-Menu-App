@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.wen.database.model.Category;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,7 +86,7 @@ public class CreateMenuItemActivity extends BaseActivityForCommon {
                 String name = newMenuName.getText().toString();
                 String description = newMenuDescription.getText().toString();
                 String categoryName = categorySelectorSpinner.getSelectedItem().toString();
-                Double price = Double.parseDouble(newMenuPrice.getText().toString());
+                BigDecimal price = new BigDecimal(newMenuPrice.getText().toString());
                 Integer categoryId = categoryDAO.getCategoryByName(categoryName);
 
                 if(menuDAO.insertNewMenuItem(name, description, categoryId, price)) {

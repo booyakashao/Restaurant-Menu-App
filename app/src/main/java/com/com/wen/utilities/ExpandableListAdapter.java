@@ -50,8 +50,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView txtListChild = (TextView) convertView.findViewById(R.id.menuChildItem);
-
         txtListChild.setText(childText);
+
         return convertView;
     }
 
@@ -83,9 +83,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.menu_item_group, null);
         }
 
-        TextView lblListHeader = (TextView) convertView.findViewById(R.id.menuItemListHeader);
-        lblListHeader.setTypeface(null, Typeface.BOLD);
-        lblListHeader.setText(headerTitle);
+        TextView menuItemListHeader = (TextView) convertView.findViewById(R.id.menuItemListHeader);
+        menuItemListHeader.setTypeface(null, Typeface.BOLD);
+        menuItemListHeader.setText(headerTitle);
 
         return convertView;
     }
