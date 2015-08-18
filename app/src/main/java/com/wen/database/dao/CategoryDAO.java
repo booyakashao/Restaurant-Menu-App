@@ -57,27 +57,6 @@ public class CategoryDAO extends DatabaseUtilities {
         return cursor.getInt(0);
     }
 
-    public Category getCategoryById(Integer id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Category categoryToReturn = new Category();
-
-        List<String> tableColumns = new ArrayList<String>();
-        tableColumns.add("*");
-
-        String whereClause = CATEGORY_COL_1 + " = ?";
-
-        List<String> whereArgs = new ArrayList<String>();
-        whereArgs.add(id.toString());
-
-        Cursor categoryCursor = db.query(CATEGORY_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), whereClause, whereArgs.toArray(new String[whereArgs.size()]), null, null, null);
-        while (categoryCursor.moveToNext()) {
-            categoryToReturn.setId(categoryCursor.getInt(0));
-            categoryToReturn.setName(categoryCursor.getString(1));
-        }
-
-        return categoryToReturn;
-    }
-
     public List<Category> getAllCategories() {
         SQLiteDatabase db = this.getWritableDatabase();
         List<Category> categoriesToReturn = new ArrayList<Category>();
