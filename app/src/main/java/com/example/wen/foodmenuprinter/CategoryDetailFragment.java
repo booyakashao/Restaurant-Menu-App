@@ -5,15 +5,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.com.wen.utilities.ExpandableMenuListAdapter;
+import com.com.wen.utilities.ExpandableListAdapter;
 import com.wen.database.dao.CategoryDAO;
 import com.wen.database.dao.MenuDAO;
 import com.wen.database.model.Menu_Item;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,13 +31,12 @@ public class CategoryDetailFragment extends Fragment {
     protected MenuDAO menuDAO;
     protected CategoryDAO categoryDAO;
     protected List<Menu_Item> menu_items;
-    protected Button checkoutButton;
 
     //Expandable List Example================================================
-    private ExpandableMenuListAdapter expandableMenuListAdapter;
+    private ExpandableListAdapter listAdapter;
     private ExpandableListView expListView;
-    private List<Menu_Item> listMenuItemHeader;
-    private HashMap<Menu_Item, List<String>> listMenuItemSubView;
+    private List<String> listMenuItemHeader;
+    private HashMap<String, List<String>> listMenuItemSubView;
     //========================================================================
 
     /**
@@ -72,16 +73,17 @@ public class CategoryDetailFragment extends Fragment {
      * Preparing the list data
      */
     private void prepareListData() {
-        listMenuItemHeader = new ArrayList<Menu_Item>();
-        listMenuItemSubView = new HashMap<Menu_Item, List<String>>();
+        listMenuItemHeader = new ArrayList<String>();
+        listMenuItemSubView = new HashMap<String, List<String>>();
+        //DecimalFormat currencyFormat = new DecimalFormat("0.00");
 
         for(Menu_Item currentMenuItem : menu_items) {
-            listMenuItemHeader.add(currentMenuItem);
+            listMenuItemHeader.add(currentMenuItem.getName());
             List<String> detailList = new ArrayList<String>();
             detailList.add("Description: " + currentMenuItem.getDescription());
             detailList.add("Price: " + NumberFormat.getCurrencyInstance().format(currentMenuItem.getPrice()));
             detailList.add("Category: " + categoryDAO.getCategoryById(currentMenuItem.getCategory().getId()).getName());
-            listMenuItemSubView.put(currentMenuItem,detailList);
+            listMenuItemSubView.put(currentMenuItem.getName(),detailList);
         }
     }
 
@@ -89,13 +91,18 @@ public class CategoryDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_category_detail, container, false);
 
-        checkoutButton = (Button) rootView.findViewById(R.id.menu_item_list_checkout_button);
-        RelativeLayout fragmentRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.fragment_category_detail_relative_layout);
+        LinearLayout fragmentLinearLayout = (LinearLayout) rootView.findViewById(R.id.fragment_category_detail_linear_layout);
 
+        // get the listview
         expListView = (ExpandableListView) rootView.findViewById(R.id.exListView);
+
+        // preparing list data
         prepareListData();
-        expandableMenuListAdapter = new ExpandableMenuListAdapter(getActivity(), listMenuItemHeader, listMenuItemSubView);
-        expListView.setAdapter(expandableMenuListAdapter);
+
+        listAdapter = new ExpandableListAdapter(getActivity(), listMenuItemHeader, listMenuItemSubView);
+
+        // setting list adapter
+        expListView.setAdapter(listAdapter);
 
         return rootView;
     }

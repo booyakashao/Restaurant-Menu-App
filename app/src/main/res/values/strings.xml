@@ -18,7 +18,6 @@
     <string name="add_category_button_text">Add Category</string>
     <string name="delete_category_button_text">Delete Category</string>
     <string name="create_menu_item_submit_button">Create Menu Item</string>
-    <string name="menu_item_checkout_button">Checkout</string>
 
     <!-- Menu Options Text -->
     <string name="create_new_menu_item_option">Create New Menu Item</string>
