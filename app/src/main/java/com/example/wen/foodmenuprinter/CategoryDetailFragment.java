@@ -2,16 +2,25 @@ package com.example.wen.foodmenuprinter;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.internal.widget.AdapterViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.wen.foodmenuprinter.example.wen.foodmenuprinter.adapters.MenuListAdapter;
+import com.example.wen.foodmenuprinter.example.wen.foodmenuprinter.adapters.MenuObjectForListView;
 import com.wen.database.dao.MenuDAO;
 import com.wen.database.model.Menu_Item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -23,6 +32,8 @@ import java.util.List;
 public class CategoryDetailFragment extends Fragment {
     MenuDAO menuDAO;
     List<Menu_Item> menu_items;
+
+    MenuListAdapter menuItemListAdapter;
 
     /**
      * The fragment argument representing the item ID that this fragment
@@ -57,17 +68,39 @@ public class CategoryDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_category_detail, container, false);
 
-        LinearLayout fragmentLinearLayout = (LinearLayout) rootView.findViewById(R.id.fragment_category_detail_linear_layout);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout fragmentLinearLayout = (RelativeLayout) rootView.findViewById(R.id.fragment_category_detail_linear_layout);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        for(Menu_Item currentMenuItem : menu_items) {
-            TextView newTextView = new TextView(getActivity());
-            newTextView.setText(currentMenuItem.getName());
-            newTextView.setId(TextView.generateViewId());
-            newTextView.setLayoutParams(params);
-            fragmentLinearLayout.addView(newTextView);
-        }
+        List<MenuObjectForListView> menuObjectForListView = getDataForListView();
+
+        menuItemListAdapter = new MenuListAdapter(menuObjectForListView);
+
+        ListView menuItemListView = (ListView) rootView.findViewById(R.id.menuListItem);
+        menuItemListView.setAdapter(menuItemListAdapter);
+        menuItemListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MenuObjectForListView chapter = menuItemListAdapter.getMenuItem(position);
+
+                Toast.makeText(getActivity().getApplicationContext(), chapter.getMenuItemName(),Toast.LENGTH_LONG).show();
+            }
+        });
 
         return rootView;
+    }
+
+    public List<MenuObjectForListView> getDataForListView()
+    {
+        List<MenuObjectForListView> MenuObjectsList = new ArrayList<MenuObjectForListView>();
+
+        for(Menu_Item currentMenuItem : menu_items) {
+            MenuObjectForListView newMenuObjectForListView = new MenuObjectForListView();
+            newMenuObjectForListView.setMenuItemName(currentMenuItem.getName());
+            newMenuObjectForListView.setMenuItemDescription(currentMenuItem.getDescription());
+            MenuObjectsList.add(newMenuObjectForListView);
+        }
+
+        return MenuObjectsList;
+
     }
 }
