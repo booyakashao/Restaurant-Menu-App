@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.example.wen.foodmenuprinter.R;
 import com.wen.database.model.Menu_Item;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,8 +57,10 @@ public class MenuListAdapter extends BaseAdapter {
 
             TextView menuItemName = (TextView)convertView.findViewById(R.id.menu_title_text_view);
             TextView menuItemDesc = (TextView)convertView.findViewById(R.id.menu_description_text_view);
+            TextView menuItemPrice = (TextView) convertView.findViewById(R.id.menu_price_text_view);
             menuItemName.setText(targetMenuObjectListItem.getMenuItemName());
             menuItemDesc.setText(targetMenuObjectListItem.getMenuItemDescription());
+            menuItemPrice.setText(targetMenuObjectListItem.getMenuPrice().toString());
         }
 
         return convertView;

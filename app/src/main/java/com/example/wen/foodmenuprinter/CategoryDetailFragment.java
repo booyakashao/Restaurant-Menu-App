@@ -97,6 +97,7 @@ public class CategoryDetailFragment extends Fragment {
             MenuObjectForListView newMenuObjectForListView = new MenuObjectForListView();
             newMenuObjectForListView.setMenuItemName(currentMenuItem.getName());
             newMenuObjectForListView.setMenuItemDescription(currentMenuItem.getDescription());
+            newMenuObjectForListView.setMenuPrice(currentMenuItem.getPrice());
             MenuObjectsList.add(newMenuObjectForListView);
         }
 

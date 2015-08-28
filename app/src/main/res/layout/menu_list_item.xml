@@ -20,4 +20,14 @@
         android:layout_below="@+id/menu_title_text_view"
         android:layout_alignLeft="@+id/menu_title_text_view"
         android:text="Description" />
+
+    <TextView
+        android:id="@+id/menu_price_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Price"
+        android:layout_alignStart="@+id/menu_title_text_view"
+        android:layout_below="@+id/menu_description_text_view"
+        />
 </RelativeLayout>

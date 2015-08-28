@@ -6,6 +6,7 @@ package com.example.wen.foodmenuprinter.example.wen.foodmenuprinter.adapters;
 public class MenuObjectForListView {
     private String menuItemName;
     private String menuItemDescription;
+    private Double menuPrice;
 
     public String getMenuItemName() {
         return menuItemName;
@@ -19,7 +20,9 @@ public class MenuObjectForListView {
         return menuItemDescription;
     }
 
-    public void setMenuItemDescription(String menuItemDescription) {
-        this.menuItemDescription = menuItemDescription;
-    }
+    public void setMenuItemDescription(String menuItemDescription) { this.menuItemDescription = menuItemDescription; }
+
+    public Double getMenuPrice() { return menuPrice; }
+
+    public void setMenuPrice(Double menuPrice) { this.menuPrice = menuPrice; }
 }
