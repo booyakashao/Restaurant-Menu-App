@@ -60,7 +60,7 @@ public class MenuListAdapter extends BaseAdapter {
             TextView menuItemPrice = (TextView) convertView.findViewById(R.id.menu_price_text_view);
             menuItemName.setText(targetMenuObjectListItem.getMenuItemName());
             menuItemDesc.setText(targetMenuObjectListItem.getMenuItemDescription());
-            menuItemPrice.setText(targetMenuObjectListItem.getMenuPrice().toString());
+            menuItemPrice.setText(String.valueOf(targetMenuObjectListItem.getMenuPrice()));
         }
 
         return convertView;

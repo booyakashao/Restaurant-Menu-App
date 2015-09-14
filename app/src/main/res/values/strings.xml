@@ -18,7 +18,7 @@
     <string name="add_category_button_text">Add Category</string>
     <string name="delete_category_button_text">Delete Category</string>
     <string name="create_menu_item_submit_button">Create Menu Item</string>
-    <string name="checkout_button_text">Checkout</string>
+    <string name="checkout_button_text">Checkout or View Cart</string>
 
     <!-- Menu Options Text -->
     <string name="create_new_menu_item_option">Create New Menu Item</string>
@@ -41,5 +41,6 @@
     <string name="new_menu_item_price_hint">Enter price here</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_add_item_to_cart">AddItemToCart</string>
 
 </resources>

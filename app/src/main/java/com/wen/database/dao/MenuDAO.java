@@ -73,7 +73,7 @@ public class MenuDAO extends DatabaseUtilities {
         Cursor menuItemCursor = db.query(MENU_ITEM_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), whereClause, whereArgs.toArray(new String[whereArgs.size()]), null, null, null);
 
         while (menuItemCursor.moveToNext()) {
-            listOfAllMenuItems.add(new Menu_Item(menuItemCursor.getInt(0), menuItemCursor.getString(1), menuItemCursor.getString(2), menuItemCursor.getDouble(3), new Category(categoryId, null)));
+            listOfAllMenuItems.add(new Menu_Item(menuItemCursor.getInt(0), menuItemCursor.getString(1), menuItemCursor.getString(2), menuItemCursor.getDouble(4), new Category(categoryId, null)));
         }
 
         return listOfAllMenuItems;

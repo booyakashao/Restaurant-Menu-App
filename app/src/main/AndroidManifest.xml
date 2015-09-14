@@ -26,12 +26,12 @@
             android:label="@string/title_activity_create_menu_item" >
         </activity>
         <activity
-            android:name=".CategoryEntryActivity"
+            android:name=".createMenuModals.CategoryEntryActivity"
             android:label="@string/title_activity_category_entry"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
         <activity
-            android:name=".DeleteCategoryActivity"
+            android:name=".createMenuModals.DeleteCategoryActivity"
             android:label="@string/title_activity_delete_category"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
@@ -46,6 +46,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.wen.foodmenuprinter.CategoryListActivity" />
+        </activity>
+        <activity
+            android:name=".openMenuModals.AddItemToCart"
+            android:label="@string/title_activity_add_item_to_cart" >
         </activity>
     </application>
 

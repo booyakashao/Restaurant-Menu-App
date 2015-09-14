@@ -1,17 +1,16 @@
-package com.example.wen.foodmenuprinter;
+package com.example.wen.foodmenuprinter.createMenuModals;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.wen.foodmenuprinter.R;
 import com.wen.database.dao.CategoryDAO;
 
 public class CategoryEntryActivity extends Activity {
