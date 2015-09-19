@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.wen.database.dao.CategoryDAO;
 import com.wen.database.dao.MenuDAO;
+import com.wen.database.dao.OrderItemsDAO;
 import com.wen.database.dao.OrdersDAO;
 import com.wen.database.dao.TaxRateDAO;
 
@@ -18,10 +19,12 @@ import com.wen.database.dao.TaxRateDAO;
  */
 public class BaseActivityForCommon extends AppCompatActivity {
 
-    protected MenuDAO menuDAO;
     protected CategoryDAO categoryDAO;
+    protected MenuDAO menuDAO;
+    protected OrderItemsDAO orderItemsDAO;
     protected OrdersDAO ordersDAO;
     protected TaxRateDAO taxRateDAO;
+
     protected static final int CategoryEntryActivityResultCode = 1;
     protected static final int CategoryDeleteActivityResultCode = 2;
 
@@ -30,8 +33,9 @@ public class BaseActivityForCommon extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //Set up DAOs
-        menuDAO = new MenuDAO(this);
         categoryDAO = new CategoryDAO(this);
+        menuDAO = new MenuDAO(this);
+        orderItemsDAO = new OrderItemsDAO(this);
         ordersDAO = new OrdersDAO(this);
         taxRateDAO = new TaxRateDAO(this);
     }

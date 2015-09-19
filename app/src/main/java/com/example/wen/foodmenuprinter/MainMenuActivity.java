@@ -68,8 +68,6 @@ public class MainMenuActivity extends BaseActivityForCommon {
                     } else {
                         Toast.makeText(v.getContext(), "Failed to create new order", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(v.getContext(), "Current Order exists", Toast.LENGTH_SHORT).show();
                 }
 
                 finish();

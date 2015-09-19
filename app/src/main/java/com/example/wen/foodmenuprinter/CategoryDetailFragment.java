@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -36,6 +37,7 @@ public class CategoryDetailFragment extends Fragment {
     List<Menu_Item> menu_items;
 
     MenuListAdapter menuItemListAdapter;
+    Button checkoutButton;
 
     /**
      * The fragment argument representing the item ID that this fragment
@@ -56,6 +58,8 @@ public class CategoryDetailFragment extends Fragment {
         menu_items = new ArrayList<Menu_Item>();
         menuDAO = new MenuDAO(getActivity());
 
+
+
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
@@ -71,6 +75,9 @@ public class CategoryDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_category_detail, container, false);
 
         RelativeLayout fragmentLinearLayout = (RelativeLayout) rootView.findViewById(R.id.fragment_category_detail_linear_layout);
+        checkoutButton = (Button) rootView.findViewById(R.id.checkout_button);
+
+
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         List<MenuObjectForListView> menuObjectForListView = getDataForListView();
@@ -79,17 +86,9 @@ public class CategoryDetailFragment extends Fragment {
 
         ListView menuItemListView = (ListView) rootView.findViewById(R.id.menuListItem);
         menuItemListView.setAdapter(menuItemListAdapter);
-        menuItemListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MenuObjectForListView chapter = menuItemListAdapter.getMenuItem(position);
+        menuItemListView.setOnItemClickListener(addToCartOnClickListener());
 
-                Intent addItemToCartIntent = new Intent(parent.getContext(), AddItemToCart.class);
-                addItemToCartIntent.putExtra("menu_item_id", chapter.getMenuItemId());
-
-                startActivity(addItemToCartIntent);
-            }
-        });
+        checkoutButton.setOnClickListener(openCartOnClickListener());
 
         return rootView;
     }
@@ -109,5 +108,31 @@ public class CategoryDetailFragment extends Fragment {
 
         return MenuObjectsList;
 
+    }
+
+    private AdapterView.OnItemClickListener addToCartOnClickListener() {
+        return new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MenuObjectForListView chapter = menuItemListAdapter.getMenuItem(position);
+
+                Intent addItemToCartIntent = new Intent(parent.getContext(), AddItemToCart.class);
+                addItemToCartIntent.putExtra("menu_item_id", chapter.getMenuItemId());
+
+                startActivity(addItemToCartIntent);
+            }
+        };
+    }
+
+    private View.OnClickListener openCartOnClickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent viewCartActivity = new Intent(v.getContext(), ViewCartActivity.class);
+                startActivity(viewCartActivity);
+
+                Toast.makeText(v.getContext(), "Checkout button was clicked", Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 }

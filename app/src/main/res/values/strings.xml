@@ -12,6 +12,7 @@
     <string name="title_category_list">Menu Items</string>
     <string name="title_category_detail">Category Detail</string>
     <string name="title_activity_add_item_to_cart">Add Item To Cart</string>
+    <string name="title_activity_view_cart">View Cart</string>
 
     <!-- Button Text -->
     <string name="create_menu_button_text">Create Menu Item</string>
@@ -43,6 +44,4 @@
     <string name="new_menu_item_price_hint">Enter price here</string>
 
     <string name="hello_world">Hello world!</string>
-
-
 </resources>

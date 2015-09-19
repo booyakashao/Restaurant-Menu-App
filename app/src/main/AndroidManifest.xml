@@ -52,6 +52,10 @@
             android:label="@string/title_activity_add_item_to_cart"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
+        <activity
+            android:name=".ViewCartActivity"
+            android:label="@string/title_activity_view_cart" >
+        </activity>
     </application>
 
 </manifest>
