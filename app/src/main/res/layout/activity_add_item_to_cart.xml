@@ -6,7 +6,29 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.wen.foodmenuprinter.openMenuModals.AddItemToCart">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView android:text="Choose Quantity" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chooseQuantity"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp" />
+
+    <NumberPicker
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/quantityNumberPicker"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/chooseQuantity"
+        android:layout_centerInParent="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_to_cart_button_text"
+        android:id="@+id/addToCartButton"
+        android:layout_below="@+id/quantityNumberPicker"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp" />
 
 </RelativeLayout>

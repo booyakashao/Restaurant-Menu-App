@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 
 public class MainMenuActivity extends BaseActivityForCommon {
@@ -59,6 +60,18 @@ public class MainMenuActivity extends BaseActivityForCommon {
             public void onClick(View v) {
                 Intent openMenuActivity = new Intent(MainMenuActivity.this, CategoryListActivity.class);
                 MainMenuActivity.this.startActivity(openMenuActivity);
+
+                if(!ordersDAO.hasCurrentOrder()) {
+                    Toast.makeText(v.getContext(), "Current Order does not exist.", Toast.LENGTH_SHORT).show();
+                    if(ordersDAO.createNewOrder()) {
+                        Toast.makeText(v.getContext(), "New order created.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(v.getContext(), "Failed to create new order", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(v.getContext(), "Current Order exists", Toast.LENGTH_SHORT).show();
+                }
+
                 finish();
             }
         };

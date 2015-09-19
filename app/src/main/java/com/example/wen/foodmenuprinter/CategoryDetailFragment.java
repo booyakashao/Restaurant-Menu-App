@@ -1,5 +1,6 @@
 package com.example.wen.foodmenuprinter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.internal.widget.AdapterViewCompat;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.wen.foodmenuprinter.example.wen.foodmenuprinter.adapters.MenuListAdapter;
 import com.example.wen.foodmenuprinter.example.wen.foodmenuprinter.adapters.MenuObjectForListView;
+import com.example.wen.foodmenuprinter.openMenuModals.AddItemToCart;
 import com.wen.database.dao.MenuDAO;
 import com.wen.database.model.Menu_Item;
 
@@ -82,7 +84,10 @@ public class CategoryDetailFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MenuObjectForListView chapter = menuItemListAdapter.getMenuItem(position);
 
-                Toast.makeText(getActivity().getApplicationContext(), chapter.getMenuItemName(),Toast.LENGTH_LONG).show();
+                Intent addItemToCartIntent = new Intent(parent.getContext(), AddItemToCart.class);
+                addItemToCartIntent.putExtra("menu_item_id", chapter.getMenuItemId());
+
+                startActivity(addItemToCartIntent);
             }
         });
 
@@ -95,6 +100,7 @@ public class CategoryDetailFragment extends Fragment {
 
         for(Menu_Item currentMenuItem : menu_items) {
             MenuObjectForListView newMenuObjectForListView = new MenuObjectForListView();
+            newMenuObjectForListView.setMenuItemId(currentMenuItem.getId());
             newMenuObjectForListView.setMenuItemName(currentMenuItem.getName());
             newMenuObjectForListView.setMenuItemDescription(currentMenuItem.getDescription());
             newMenuObjectForListView.setMenuPrice(currentMenuItem.getPrice());

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.wen.foodmenuprinter.R;
 import com.wen.database.dao.CategoryDAO;
+import com.wen.database.dao.MenuDAO;
 import com.wen.database.model.Category;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class DeleteCategoryActivity extends Activity {
     Spinner categorySelectorSpinner;
     Button deleteCategoryDialogButton;
     CategoryDAO categoryDAO;
+    MenuDAO menuDAO;
+
     private static final int CategoryDeleteActivityResultCode = 2;
 
     @Override
@@ -30,6 +33,7 @@ public class DeleteCategoryActivity extends Activity {
         setContentView(R.layout.activity_delete_category);
 
         categoryDAO = new CategoryDAO(this);
+        menuDAO = new MenuDAO(this);
 
         deleteCategoryDialogButton = (Button) findViewById(R.id.delete_category_dialog_button);
         deleteCategoryDialogButton.setOnClickListener(deleteCategoryOnClickListener());
@@ -62,7 +66,11 @@ public class DeleteCategoryActivity extends Activity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(categoryDAO.deleteCategory(categorySelectorSpinner.getSelectedItem().toString()) >= 1) {
+
+                String targetCategoryName = categorySelectorSpinner.getSelectedItem().toString();
+
+                if(menuDAO.deleteMenuItemsForCategory(categoryDAO.getCategoryByName(targetCategoryName)) >= 1 &&
+                        categoryDAO.deleteCategory(targetCategoryName) >= 1) {
                     Toast.makeText(v.getContext(), "Category Deleted", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(v.getContext(), "Category Failed to delete", Toast.LENGTH_SHORT).show();

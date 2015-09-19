@@ -22,7 +22,7 @@ public class MenuDAO extends DatabaseUtilities {
     }
 
     public boolean doesMenusExist() {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 
         List<String> tableColumns = new ArrayList<String>();
         tableColumns.add("count(*)");
@@ -57,8 +57,13 @@ public class MenuDAO extends DatabaseUtilities {
         }
     }
 
-    public List<Menu_Item> getMenuItemsByCategoryId(Integer categoryId) {
+    public Integer deleteMenuItemsForCategory(Integer categoryId) {
         SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(MENU_ITEM_TABLE_NAME, MENU_ITEM_COL_4 + " = ?", new String[] {Integer.toString(categoryId)});
+    }
+
+    public List<Menu_Item> getMenuItemsByCategoryId(Integer categoryId) {
+        SQLiteDatabase db = this.getReadableDatabase();
 
         List<Menu_Item> listOfAllMenuItems = new ArrayList<Menu_Item>();
 
@@ -82,7 +87,7 @@ public class MenuDAO extends DatabaseUtilities {
     // Not Used
     // Gets currently selected Menu
     public Integer getSelectedMenuId() {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 
         List<String> tableColumns = new ArrayList<String>();
         tableColumns.add("*");

@@ -31,14 +31,6 @@ public class CategoryEntryActivity extends Activity {
         categoryDAO = new CategoryDAO(this);
 
         try {
-            String s = getIntent().getExtras().getString("title");
-            if (s.length() > 0) {
-                this.setTitle(s);
-            }
-        } catch(Exception e) {
-        }
-
-        try {
             categoryTextEntry = (EditText) findViewById(R.id.editNewCategoryText);
         } catch (Exception e) {
         }

@@ -41,7 +41,7 @@ public class CategoryDAO extends DatabaseUtilities {
     }
 
     public Integer getCategoryByName(String categoryName) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 
         List<String> tableColumns = new ArrayList<String>();
         tableColumns.add("id");
@@ -58,7 +58,7 @@ public class CategoryDAO extends DatabaseUtilities {
     }
 
     public List<Category> getAllCategories() {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         List<Category> categoriesToReturn = new ArrayList<Category>();
 
         List<String> tableColumns = new ArrayList<String>();

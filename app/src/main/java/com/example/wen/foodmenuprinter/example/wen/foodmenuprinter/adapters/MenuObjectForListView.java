@@ -4,9 +4,14 @@ package com.example.wen.foodmenuprinter.example.wen.foodmenuprinter.adapters;
  * Created by w.gu on 8/20/2015.
  */
 public class MenuObjectForListView {
+    private Integer menuItemId;
     private String menuItemName;
     private String menuItemDescription;
     private Double menuPrice;
+
+    public Integer getMenuItemId() { return menuItemId; }
+
+    public void setMenuItemId(Integer menuItemId) { this.menuItemId = menuItemId; }
 
     public String getMenuItemName() {
         return menuItemName;

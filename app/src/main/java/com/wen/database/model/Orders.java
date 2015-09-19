@@ -7,23 +7,39 @@ import java.util.Date;
  */
 public class Orders {
 
-    private Long id;
+    private Integer id;
+    private boolean fulfilled;
+    private boolean current;
     private Date createTime;
 
     public Orders() {
     }
 
-    public Orders(Long id, Date createTime) {
+    public Orders(Integer id, Date createTime) {
         this.id = id;
+        fulfilled = false;
+        current = true;
         this.createTime = createTime;
     }
 
-    public Long getId() {
-        return id;
+    public Integer getId(){ return id; }
+
+    public void setId(Integer id) { this.id = id; }
+
+    public boolean isFulfilled() {
+        return fulfilled;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setFulfilled(boolean fulfilled) {
+        this.fulfilled = fulfilled;
+    }
+
+    public boolean isCurrent() {
+        return current;
+    }
+
+    public void setCurrent(boolean current) {
+        this.current = current;
     }
 
     public Date getCreateTime() {
