@@ -15,16 +15,16 @@ public class OrderItemsDAO extends DatabaseUtilities {
         super(context);
     }
 
-    public boolean createNewOrderItem() {
+    public boolean createNewOrderItem(Integer orderId, Integer menuId, Integer quantity) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         /*
         This is not done yet!!!
          */
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ORDER_ITEM_COL_2, "");
-        contentValues.put(ORDER_ITEM_COL_3, 0);
-        contentValues.put(ORDER_ITEM_COL_4, 1);
+        contentValues.put(ORDER_ITEM_COL_2, orderId);
+        contentValues.put(ORDER_ITEM_COL_3, menuId);
+        contentValues.put(ORDER_ITEM_COL_4, quantity);
 
         long result = db.insert(ORDER_ITEM_TABLE_NAME, null, contentValues);
 

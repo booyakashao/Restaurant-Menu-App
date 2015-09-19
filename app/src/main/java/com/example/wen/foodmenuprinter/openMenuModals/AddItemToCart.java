@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.wen.foodmenuprinter.R;
 import com.wen.database.dao.MenuDAO;
+import com.wen.database.dao.OrderItemsDAO;
 import com.wen.database.dao.OrdersDAO;
 import com.wen.database.model.Orders;
 
@@ -21,6 +22,8 @@ public class AddItemToCart extends Activity {
 
     MenuDAO menuDAO;
     OrdersDAO orderDAO;
+    OrderItemsDAO orderItemsDAO;
+
     NumberPicker quantityNumberPicker;
     Button addToCartButton;
     Intent indentData;
@@ -34,6 +37,7 @@ public class AddItemToCart extends Activity {
         // //Set up DAOs
         menuDAO = new MenuDAO(this);
         orderDAO = new OrdersDAO(this);
+        orderItemsDAO = new OrderItemsDAO(this);
 
         addToCartButton = (Button) findViewById(R.id.addToCartButton);
 
@@ -65,8 +69,11 @@ public class AddItemToCart extends Activity {
 
                 if(hasCurrentOrder) {
                     currentOrder = orderDAO.getCurrentOrder();
-
-
+                    if(orderItemsDAO.createNewOrderItem(currentOrder.getId(), menu_item_id, quantityNumberPicker.getValue())) {
+                        executeDone();
+                    } else {
+                        Toast.makeText(v.getContext(), "Order was not completed", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(v.getContext(), "There is not a current order", Toast.LENGTH_SHORT).show();
                 }
