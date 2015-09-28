@@ -40,6 +40,28 @@ public class CategoryDAO extends DatabaseUtilities {
         return db.delete(CATEGORY_TABLE_NAME, CATEGORY_COL_2 + " = ?", new String[] {category});
     }
 
+    public Category getCategoryById(Integer id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Category categoryToReturn = new Category();
+
+        List<String> tableColumns = new ArrayList<String>();
+        tableColumns.add("*");
+
+        String whereClause = CATEGORY_COL_1 + " = ?";
+
+        List<String> whereArgs = new ArrayList<String>();
+        whereArgs.add(Integer.toString(id));
+
+        Cursor cursor =  db.query(CATEGORY_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), whereClause, whereArgs.toArray(new String[whereArgs.size()]), null, null, null);
+
+        if(cursor.moveToFirst()) {
+            categoryToReturn = new Category(cursor.getInt(0), cursor.getString(1));
+        }
+
+        return categoryToReturn;
+    }
+
     public Integer getCategoryByName(String categoryName) {
         SQLiteDatabase db = this.getReadableDatabase();
 

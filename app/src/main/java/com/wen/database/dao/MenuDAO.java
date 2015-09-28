@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.view.Menu;
 
 import com.wen.database.DatabaseUtilities;
 import com.wen.database.model.Category;
@@ -62,6 +63,28 @@ public class MenuDAO extends DatabaseUtilities {
         return db.delete(MENU_ITEM_TABLE_NAME, MENU_ITEM_COL_4 + " = ?", new String[] {Integer.toString(categoryId)});
     }
 
+    public Menu_Item getMenuItemById(Integer id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Menu_Item currentMenuItem = new Menu_Item();
+
+        List<String> tableColumns = new ArrayList<String>();
+        tableColumns.add("*");
+
+        String whereClause = MENU_ITEM_COL_1 + " = ?";
+
+        List<String> whereArgs = new ArrayList<String>();
+        whereArgs.add(Integer.toString(id));
+
+        Cursor menuItemCursor = db.query(MENU_ITEM_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), whereClause, whereArgs.toArray(new String[whereArgs.size()]), null, null, null);
+
+        if (menuItemCursor.moveToFirst()) {
+            currentMenuItem = new Menu_Item(menuItemCursor.getInt(0), menuItemCursor.getString(1), menuItemCursor.getString(2), menuItemCursor.getDouble(4), new Category(menuItemCursor.getInt(3), null));
+        }
+
+        return currentMenuItem;
+    }
+
     public List<Menu_Item> getMenuItemsByCategoryId(Integer categoryId) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -77,7 +100,7 @@ public class MenuDAO extends DatabaseUtilities {
 
         Cursor menuItemCursor = db.query(MENU_ITEM_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), whereClause, whereArgs.toArray(new String[whereArgs.size()]), null, null, null);
 
-        while (menuItemCursor.moveToNext()) {
+        if (menuItemCursor.moveToFirst()) {
             listOfAllMenuItems.add(new Menu_Item(menuItemCursor.getInt(0), menuItemCursor.getString(1), menuItemCursor.getString(2), menuItemCursor.getDouble(4), new Category(categoryId, null)));
         }
 

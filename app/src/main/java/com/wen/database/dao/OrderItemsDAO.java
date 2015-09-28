@@ -2,9 +2,16 @@ package com.wen.database.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.wen.database.DatabaseUtilities;
+import com.wen.database.model.Menu_Item;
+import com.wen.database.model.OrderItems;
+import com.wen.database.model.Orders;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Wen on 9/19/2015.
@@ -18,9 +25,6 @@ public class OrderItemsDAO extends DatabaseUtilities {
     public boolean createNewOrderItem(Integer orderId, Integer menuId, Integer quantity) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        /*
-        This is not done yet!!!
-         */
         ContentValues contentValues = new ContentValues();
         contentValues.put(ORDER_ITEM_COL_2, orderId);
         contentValues.put(ORDER_ITEM_COL_3, menuId);
@@ -33,5 +37,27 @@ public class OrderItemsDAO extends DatabaseUtilities {
         } else {
             return true;
         }
+    }
+
+    public List<OrderItems> getOrderItemByOrders(Integer orderId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        List<OrderItems> orderItemsToBeReturned = new ArrayList<OrderItems>();
+
+        List<String> tableColumns = new ArrayList<String>();
+        tableColumns.add("*");
+
+        String whereClause = ORDER_ITEM_COL_2 + " = ?";
+
+        List<String> whereArgs = new ArrayList<String>();
+        whereArgs.add(orderId.toString());
+
+        Cursor orderItemsCursor = db.query(ORDER_ITEM_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), whereClause, whereArgs.toArray(new String[whereArgs.size()]), null, null, null);
+
+        while (orderItemsCursor.moveToNext()) {
+            orderItemsToBeReturned.add(new OrderItems(orderItemsCursor.getInt(0), new Orders(orderItemsCursor.getInt(1), null), new Menu_Item(orderItemsCursor.getInt(2), null, null, null, null), orderItemsCursor.getInt(3)));
+        }
+
+        return orderItemsToBeReturned;
     }
 }

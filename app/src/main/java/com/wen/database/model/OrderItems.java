@@ -6,7 +6,7 @@ import android.view.Menu;
  * Created by Wen on 7/27/2015.
  */
 public class OrderItems {
-    private Long id;
+    private Integer id;
     private Orders order_item;
     private Menu_Item menu_instance;
     private Integer quantity;
@@ -15,20 +15,16 @@ public class OrderItems {
 
     }
 
-    public OrderItems(Long id, Orders order_instance, Menu_Item menu_instance, Integer quantity) {
+    public OrderItems(Integer id, Orders order_instance, Menu_Item menu_instance, Integer quantity) {
         this.id = id;
         this.order_item = order_instance;
         this.menu_instance = menu_instance;
         this.quantity = quantity;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Integer getId() { return id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Integer id) { this.id = id; }
 
     public Orders getOrder_item() {
         return order_item;
