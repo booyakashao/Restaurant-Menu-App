@@ -9,6 +9,7 @@ public class Menu_Item {
     private String description;
     private Double price;
     private Category category;
+    private Integer quantity; // Used only for cart
 
     public Menu_Item() {
     }
@@ -60,4 +61,8 @@ public class Menu_Item {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public Integer getQuantity() { return this.quantity; }
+
+    public void setQuantity(Integer quantity) { this.quantity = quantity; }
 }
