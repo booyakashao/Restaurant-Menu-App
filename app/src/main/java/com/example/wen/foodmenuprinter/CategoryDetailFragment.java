@@ -102,7 +102,7 @@ public class CategoryDetailFragment extends Fragment {
             newMenuObjectForListView.setMenuItemId(currentMenuItem.getId());
             newMenuObjectForListView.setMenuItemName(currentMenuItem.getName());
             newMenuObjectForListView.setMenuItemDescription(currentMenuItem.getDescription());
-            newMenuObjectForListView.setMenuPrice(currentMenuItem.getPrice());
+            newMenuObjectForListView.setMenuPrice(CommonUtils.convertDoubleToPrice(currentMenuItem.getPrice()));
             MenuObjectsList.add(newMenuObjectForListView);
         }
 

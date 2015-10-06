@@ -7,7 +7,7 @@ public class MenuObjectForListView {
     private Integer menuItemId;
     private String menuItemName;
     private String menuItemDescription;
-    private Double menuPrice;
+    private String menuPrice;
 
     public Integer getMenuItemId() { return menuItemId; }
 
@@ -27,7 +27,7 @@ public class MenuObjectForListView {
 
     public void setMenuItemDescription(String menuItemDescription) { this.menuItemDescription = menuItemDescription; }
 
-    public Double getMenuPrice() { return menuPrice; }
+    public String getMenuPrice() { return menuPrice; }
 
-    public void setMenuPrice(Double menuPrice) { this.menuPrice = menuPrice; }
+    public void setMenuPrice(String menuPrice) { this.menuPrice = menuPrice; }
 }

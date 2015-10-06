@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import com.example.wen.foodmenuprinter.CommonUtils;
 import com.example.wen.foodmenuprinter.R;
 import com.wen.database.model.Category;
 import com.wen.database.model.Menu_Item;
@@ -21,36 +22,37 @@ import java.util.List;
 public class MenuItemExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
-    private List<String> _listDataHeader; // header titles
+
+    private List<Category> listOfCategories; // header titles
     // child data in format header title, child title
-    private HashMap<String, List<String>> _listChildData;
+    private HashMap<Category, List<Menu_Item>> listOfChildMenuItems;
 
 
-    public MenuItemExpandableListAdapter(Context context, List<String> listDataHeader, HashMap<String, List<String>> listChildData) {
+    public MenuItemExpandableListAdapter(Context context, List<Category> listDataHeader, HashMap<Category, List<Menu_Item>> listChildData) {
         this._context = context;
-        this._listDataHeader = listDataHeader;
-        this._listChildData = listChildData;
+        this.listOfCategories = listDataHeader;
+        this.listOfChildMenuItems = listChildData;
     }
 
     @Override
     public int getGroupCount() {
-        return this._listDataHeader.size();
+        return this.listOfCategories.size();
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this._listChildData.get(this._listDataHeader.get(groupPosition))
+        return this.listOfChildMenuItems.get(this.listOfCategories.get(groupPosition))
                 .size();
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return this._listDataHeader.get(groupPosition);
+        return this.listOfCategories.get(groupPosition);
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return this._listChildData.get(this._listDataHeader.get(groupPosition))
+        return this.listOfChildMenuItems.get(this.listOfCategories.get(groupPosition))
                 .get(childPosition);
     }
 
@@ -71,7 +73,7 @@ public class MenuItemExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        String headerTitle = (String) getGroup(groupPosition);
+        Category category = (Category) getGroup(groupPosition);
         if(convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -81,14 +83,14 @@ public class MenuItemExpandableListAdapter extends BaseExpandableListAdapter {
         TextView viewCartMenuItemLabel = (TextView) convertView
                 .findViewById(R.id.viewCartMenuItemLabel);
         viewCartMenuItemLabel.setTypeface(null, Typeface.BOLD);
-        viewCartMenuItemLabel.setText(headerTitle);
+        viewCartMenuItemLabel.setText(category.getName());
 
         return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final String childText = (String) getChild(groupPosition, childPosition);
+        final Menu_Item menuItem = (Menu_Item) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
@@ -100,10 +102,15 @@ public class MenuItemExpandableListAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.viewCartMenuItemDetailName);
         TextView viewCartMenuItemDetailDescription = (TextView) convertView
                 .findViewById(R.id.viewCartMenuItemDetailDescription);
+        TextView viewCartMenuItemDetailPrice = (TextView) convertView
+                .findViewById(R.id.viewCartMenuItemDetailPrice);
         TextView viewCartMenuItemDetailQuantity = (TextView) convertView
                 .findViewById(R.id.viewCartMenuItemDetailQuantity);
 
-        viewCartMenuItemDetailName.setText(childText);
+        viewCartMenuItemDetailName.setText(menuItem.getName());
+        viewCartMenuItemDetailDescription.setText(menuItem.getDescription());
+        viewCartMenuItemDetailPrice.setText(CommonUtils.convertDoubleToPrice(menuItem.getPrice()));
+        viewCartMenuItemDetailQuantity.setText("Quantity: " + Integer.toString(menuItem.getQuantity()));
 
         return convertView;
     }
