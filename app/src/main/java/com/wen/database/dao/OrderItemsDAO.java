@@ -25,17 +25,59 @@ public class OrderItemsDAO extends DatabaseUtilities {
     public boolean createNewOrderItem(Integer orderId, Integer menuId, Integer quantity) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(ORDER_ITEM_COL_2, orderId);
-        contentValues.put(ORDER_ITEM_COL_3, menuId);
-        contentValues.put(ORDER_ITEM_COL_4, quantity);
+        long result = 0;
 
-        long result = db.insert(ORDER_ITEM_TABLE_NAME, null, contentValues);
+        OrderItems existingOrder = getExistingOrderItem(orderId, menuId);
+
+        if(existingOrder != null) {
+            Integer newQuantity = quantity + existingOrder.getQuantity();
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(ORDER_ITEM_COL_4, newQuantity);
+
+            String whereClause = ORDER_ITEM_COL_1 + " = ? ";
+
+            List<String> whereArgs = new ArrayList<String>();
+            whereArgs.add(existingOrder.getId().toString());
+
+            result = db.update(ORDER_ITEM_TABLE_NAME, contentValues, whereClause, whereArgs.toArray(new String[whereArgs.size()]));
+        } else {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(ORDER_ITEM_COL_2, orderId);
+            contentValues.put(ORDER_ITEM_COL_3, menuId);
+            contentValues.put(ORDER_ITEM_COL_4, quantity);
+
+            result = db.insert(ORDER_ITEM_TABLE_NAME, null, contentValues);
+        }
 
         if(result == -1) {
             return false;
         } else {
             return true;
+        }
+    }
+
+    public OrderItems getExistingOrderItem(Integer orderId, Integer menuId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        List<String> tableColumns = new ArrayList<String>();
+        tableColumns.add("*");
+
+        String whereClause = ORDER_ITEM_COL_2 +
+                            " = ? AND " +
+                            ORDER_ITEM_COL_3 +
+                            " = ?";
+
+        List<String> whereArgs = new ArrayList<String>();
+        whereArgs.add(orderId.toString());
+        whereArgs.add(menuId.toString());
+
+        Cursor orderItemsCursor = db.query(ORDER_ITEM_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), whereClause, whereArgs.toArray(new String[whereArgs.size()]), null, null, null);
+
+        if(orderItemsCursor.moveToFirst()) {
+           return new OrderItems(orderItemsCursor.getInt(0), new Orders(orderItemsCursor.getInt(1), null), new Menu_Item(orderItemsCursor.getInt(2), null, null, null, null), orderItemsCursor.getInt(3));
+        } else {
+            return null;
         }
     }
 

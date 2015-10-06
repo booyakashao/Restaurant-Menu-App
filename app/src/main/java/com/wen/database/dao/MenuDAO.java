@@ -10,6 +10,7 @@ import com.wen.database.DatabaseUtilities;
 import com.wen.database.model.Category;
 import com.wen.database.model.Menu_Item;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,11 +44,14 @@ public class MenuDAO extends DatabaseUtilities {
     public boolean insertNewMenuItem(String name, String description, Integer categoryId, Double price) {
         SQLiteDatabase db = this.getWritableDatabase();
 
+        Double priceToBeTruncated = price;
+        Double truncatedPrice = new BigDecimal(priceToBeTruncated).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+
         ContentValues contentValues = new ContentValues();
         contentValues.put(MENU_ITEM_COL_2, name);
         contentValues.put(MENU_ITEM_COL_3, description);
         contentValues.put(MENU_ITEM_COL_4, categoryId);
-        contentValues.put(MENU_ITEM_COL_5, price);
+        contentValues.put(MENU_ITEM_COL_5, truncatedPrice);
 
         long result = db.insert(MENU_ITEM_TABLE_NAME, null, contentValues);
 
