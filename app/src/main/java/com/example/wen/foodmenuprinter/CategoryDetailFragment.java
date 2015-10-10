@@ -130,8 +130,6 @@ public class CategoryDetailFragment extends Fragment {
             public void onClick(View v) {
                 Intent viewCartActivity = new Intent(v.getContext(), ViewCartActivity.class);
                 startActivity(viewCartActivity);
-
-                Toast.makeText(v.getContext(), "Checkout button was clicked", Toast.LENGTH_SHORT).show();
             }
         };
     }

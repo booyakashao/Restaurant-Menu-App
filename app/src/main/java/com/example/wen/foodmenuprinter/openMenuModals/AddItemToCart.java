@@ -47,7 +47,7 @@ public class AddItemToCart extends Activity {
         quantityNumberPicker = (NumberPicker) findViewById(R.id.quantityNumberPicker);
 
         quantityNumberPicker.setMinValue(0);
-        quantityNumberPicker.setMaxValue(999);
+        quantityNumberPicker.setMaxValue(459);
         quantityNumberPicker.setWrapSelectorWheel(false);
 
         addToCartButton.setOnClickListener(addToCartOnClickListener());
@@ -63,8 +63,6 @@ public class AddItemToCart extends Activity {
 
                 Integer menu_item_id = indentData.getIntExtra("menu_item_id", -1);
 
-                // Toast.makeText(v.getContext(), "Current menu_item_id is " + menu_item_id, Toast.LENGTH_SHORT).show();
-//                 Toast.makeText(v.getContext(), "You have added " + quantityNumberPicker.getValue() + " items.", Toast.LENGTH_SHORT).show();
                 boolean hasCurrentOrder = orderDAO.hasCurrentOrder();
 
                 if(hasCurrentOrder) {

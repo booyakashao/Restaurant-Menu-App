@@ -43,5 +43,8 @@
     <string name="new_category_hint">Enter name of new category here</string>
     <string name="new_menu_item_price_hint">Enter price here</string>
 
+    <!-- View Cart Text-->
+    <string name="view_cart_quantity_text">Quantity: </string>
+
     <string name="hello_world">Hello world!</string>
 </resources>
