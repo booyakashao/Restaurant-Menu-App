@@ -45,7 +45,7 @@ public class OrderItemsDAO extends DatabaseUtilities {
             ContentValues contentValues = new ContentValues();
             contentValues.put(ORDER_ITEM_COL_2, orderId);
             contentValues.put(ORDER_ITEM_COL_3, menuId);
-            contentValues.put(ORDER_ITEM_COL_4, quantity);
+            contentValues.put(ORDER_ITEM_COL_4, quantity - 1);
 
             result = db.insert(ORDER_ITEM_TABLE_NAME, null, contentValues);
         }
@@ -101,5 +101,11 @@ public class OrderItemsDAO extends DatabaseUtilities {
         }
 
         return orderItemsToBeReturned;
+    }
+
+    public Integer deleteOrderItem(Integer OrderItemId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        return db.delete(ORDER_ITEM_TABLE_NAME, ORDER_ITEM_COL_1 + " = ?", new String[] {Integer.toString(OrderItemId)});
     }
 }

@@ -22,6 +22,7 @@
     <string name="create_menu_item_submit_button">Create Menu Item</string>
     <string name="checkout_button_text">Checkout or View Cart</string>
     <string name="add_to_cart_button_text">Add To Cart</string>
+    <string name="view_cart_remove_item_button_text">Delete</string>
 
     <!-- Menu Options Text -->
     <string name="create_new_menu_item_option">Create New Menu Item</string>

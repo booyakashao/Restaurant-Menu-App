@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -117,11 +118,14 @@ public class MenuItemExpandableListAdapter extends BaseExpandableListAdapter {
         TextView viewCartMenuItemDetailPrice = (TextView) convertView
                 .findViewById(R.id.viewCartMenuItemDetailPrice);
 
+        Spinner quantitySpinner = (Spinner) convertView.findViewById(R.id.viewCartMenuItemDetailQuantitySpinner);
+
+        Button deleteItemButton = (Button) convertView.findViewById(R.id.viewCartRemoveItemButton);
+        deleteItemButton.setOnClickListener(new MenuItemOnClickListener(menuItem, orderItemsDAO, ordersDAO, convertView));
+
         viewCartMenuItemDetailName.setText(menuItem.getName());
         viewCartMenuItemDetailDescription.setText(menuItem.getDescription());
         viewCartMenuItemDetailPrice.setText(CommonUtils.convertDoubleToPrice(menuItem.getPrice()));
-
-        Spinner quantitySpinner = (Spinner) convertView.findViewById(R.id.viewCartMenuItemDetailQuantitySpinner);
 
         ArrayAdapter<CharSequence> quantityAdapter = ArrayAdapter.createFromResource(
                 _context, R.array.quantity_spinner, android.R.layout.simple_spinner_item);
@@ -129,7 +133,7 @@ public class MenuItemExpandableListAdapter extends BaseExpandableListAdapter {
         quantityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         quantitySpinner.setAdapter(quantityAdapter);
         quantitySpinner.setSelection(menuItem.getQuantity());
-        quantitySpinner.setOnItemSelectedListener(quantityChangeListener(menuItem));
+        quantitySpinner.setOnItemSelectedListener(new MenuItemOnSelectedListener(menuItem, orderItemsDAO, ordersDAO));
 
         return convertView;
     }
@@ -137,21 +141,5 @@ public class MenuItemExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
-    }
-
-    private AdapterView.OnItemSelectedListener quantityChangeListener(final Menu_Item menuItem) {
-        return new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                Integer quantityToIncrease = position - menuItem.getQuantity();
-                Orders currentOrder = ordersDAO.getCurrentOrder();
-                orderItemsDAO.createNewOrderItem(currentOrder.getId(), menuItem.getId(), quantityToIncrease);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do Nothing
-            }
-        };
     }
 }

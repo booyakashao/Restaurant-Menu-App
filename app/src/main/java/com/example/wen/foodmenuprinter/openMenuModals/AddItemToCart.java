@@ -46,7 +46,7 @@ public class AddItemToCart extends Activity {
 
         quantityNumberPicker = (NumberPicker) findViewById(R.id.quantityNumberPicker);
 
-        quantityNumberPicker.setMinValue(0);
+        quantityNumberPicker.setMinValue(1);
         quantityNumberPicker.setMaxValue(459);
         quantityNumberPicker.setWrapSelectorWheel(false);
 
@@ -67,7 +67,8 @@ public class AddItemToCart extends Activity {
 
                 if(hasCurrentOrder) {
                     currentOrder = orderDAO.getCurrentOrder();
-                    if(orderItemsDAO.createNewOrderItem(currentOrder.getId(), menu_item_id, quantityNumberPicker.getValue())) {
+                    Integer currentSelectedQuantity = quantityNumberPicker.getValue();
+                    if(orderItemsDAO.createNewOrderItem(currentOrder.getId(), menu_item_id, currentSelectedQuantity)) {
                         executeDone();
                     } else {
                         Toast.makeText(v.getContext(), "Order was not completed", Toast.LENGTH_SHORT).show();
@@ -86,9 +87,6 @@ public class AddItemToCart extends Activity {
     }
 
     private void executeDone() {
-//        Intent resultIntent = new Intent();
-//        resultIntent.putExtra("newCategory", CategoryEntryActivity.this.categoryTextEntry.getText().toString());
-//        setResult(RESULT_OK, resultIntent);
         finish();
     }
 
