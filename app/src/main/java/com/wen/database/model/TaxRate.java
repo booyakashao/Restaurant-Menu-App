@@ -4,22 +4,22 @@ package com.wen.database.model;
  * Created by Wen on 7/27/2015.
  */
 public class TaxRate {
-    private Long id;
+    private Integer id;
     private Double taxRate;
 
     public TaxRate() {
     }
 
-    public TaxRate(Long id, Double taxRate) {
+    public TaxRate(Integer id, Double taxRate) {
         this.id = id;
         this.taxRate = taxRate;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

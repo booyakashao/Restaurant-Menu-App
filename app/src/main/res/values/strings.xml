@@ -46,6 +46,8 @@
 
     <!-- View Cart Text-->
     <string name="view_cart_quantity_text">Quantity: </string>
+    <string name="view_cart_menu_subtotal_label">Subtotal: </string>
+    <string name="view_cart_menu_total_label">Total: </string>
 
     <string name="hello_world">Hello world!</string>
 </resources>

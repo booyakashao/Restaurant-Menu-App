@@ -2,6 +2,7 @@ package com.example.wen.foodmenuprinter;
 
 import android.os.Bundle;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import com.example.wen.foodmenuprinter.example.wen.foodmenuprinter.adapters.MenuItemExpandableListAdapter;
 import com.wen.database.model.Category;
@@ -21,6 +22,8 @@ public class ViewCartActivity extends BaseActivityForCommon {
 //    HashMap<String, List<String>> listDataChild;
     List<Category> listDataHeader;
     HashMap<Category, List<Menu_Item>> listDataChild;
+    TextView subtotal;
+    TextView total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,8 @@ public class ViewCartActivity extends BaseActivityForCommon {
 
         // get the listview
         listOfOrdersByCategory  = (ExpandableListView) findViewById(R.id.expandableListView);
+        subtotal = (TextView) findViewById(R.id.viewCartMenuSubtotalAmount);
+        total = (TextView) findViewById(R.id.viewCartMenuTotalAmount);
 
         // preparing list data
         prepareListData();
@@ -43,6 +48,7 @@ public class ViewCartActivity extends BaseActivityForCommon {
      * Preparing the list data
      */
     private void prepareListData() {
+        Double subtotal_price_counter = new Double(0);
         listDataHeader = new ArrayList<Category>();
         listDataChild = new HashMap<Category, List<Menu_Item>>();
 
@@ -64,6 +70,11 @@ public class ViewCartActivity extends BaseActivityForCommon {
                 newListOfMenuItems.add(currentMenuItem);
                 listDataChild.put(currentCategory, newListOfMenuItems);
             }
+
+            subtotal_price_counter += currentMenuItem.getPrice() * currentMenuItem.getQuantity();
         }
+
+        subtotal.setText("$" + Double.toString(subtotal_price_counter));
+        total.setText("$" + Double.toString(subtotal_price_counter * (1 + taxRateDAO.getTaxRate().getTaxRate())));
     }
 }
