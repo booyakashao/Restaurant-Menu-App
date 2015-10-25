@@ -41,6 +41,15 @@ public class MainMenuActivity extends BaseActivityForCommon {
 
             mainActivityLayout.addView(openMenuButton);
         }
+
+        Button changeTaxRate = new Button(this);
+        changeTaxRate.setText(R.string.change_tax_rate_button_text);
+        changeTaxRate.setId(R.id.change_tax_rate);
+        changeTaxRate.setTag("changeTaxRateButton");
+        changeTaxRate.setPadding(20, 20, 0, 0);
+        changeTaxRate.setOnClickListener(changeTaxRateOnClickListener());
+
+        mainActivityLayout.addView(changeTaxRate);
     }
 
     private View.OnClickListener createMenuOnClickListener() {
@@ -70,6 +79,17 @@ public class MainMenuActivity extends BaseActivityForCommon {
                     }
                 }
 
+                finish();
+            }
+        };
+    }
+
+    private View.OnClickListener changeTaxRateOnClickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent changeTaxRateActivity = new Intent(MainMenuActivity.this, ChangeTaxRateActivity.class);
+                MainMenuActivity.this.startActivity(changeTaxRateActivity);
                 finish();
             }
         };

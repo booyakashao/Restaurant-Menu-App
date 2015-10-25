@@ -17,12 +17,14 @@
     <!-- Button Text -->
     <string name="create_menu_button_text">Create Menu Item</string>
     <string name="open_menu_button_text">Open Menu</string>
+    <string name="change_tax_rate_button_text">Change Tax Rate</string>
     <string name="add_category_button_text">Add Category</string>
     <string name="delete_category_button_text">Delete Category</string>
     <string name="create_menu_item_submit_button">Create Menu Item</string>
     <string name="checkout_button_text">Checkout or View Cart</string>
     <string name="add_to_cart_button_text">Add To Cart</string>
     <string name="view_cart_remove_item_button_text">Delete</string>
+    <string name="change_tax_rate_submit_button_text">Submit Change</string>
 
     <!-- Menu Options Text -->
     <string name="create_new_menu_item_option">Create New Menu Item</string>
@@ -50,4 +52,8 @@
     <string name="view_cart_menu_total_label">Total: </string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_change_tax_rate">ChangeTaxRateActivity</string>
+
+    <!-- Change Tax Rate Text -->
+    <string name="change_tax_rate_title">Tax Rate</string>
 </resources>

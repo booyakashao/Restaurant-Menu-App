@@ -77,7 +77,7 @@ public class TaxRateDAO extends DatabaseUtilities {
         if(currentTaxRate != null) {
             return currentTaxRate;
         } else {
-            return new TaxRate(0, 8.65);
+            return new TaxRate(0, 0.00);
         }
     }
 }

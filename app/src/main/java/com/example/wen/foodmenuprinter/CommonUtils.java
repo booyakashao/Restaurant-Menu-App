@@ -11,4 +11,8 @@ public class CommonUtils {
 
         return "$ " + new DecimalFormat("#0.00").format(price);
     }
+
+    public static String convertToPercentage(Double percentage) {
+        return new DecimalFormat("#0.00").format(percentage);
+    }
 }

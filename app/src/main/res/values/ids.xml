@@ -2,4 +2,5 @@
 <resources>
     <item name="create_menu_button" type="id"/>
     <item name="open_menu_button" type="id"/>
+    <item name="change_tax_rate" type="id"/>
 </resources>

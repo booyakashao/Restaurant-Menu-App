@@ -56,6 +56,10 @@
             android:name=".ViewCartActivity"
             android:label="@string/title_activity_view_cart" >
         </activity>
+        <activity
+            android:name=".ChangeTaxRateActivity"
+            android:label="@string/title_activity_change_tax_rate" >
+        </activity>
     </application>
 
 </manifest>
