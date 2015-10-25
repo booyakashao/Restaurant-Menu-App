@@ -74,7 +74,7 @@ public class ViewCartActivity extends BaseActivityForCommon {
             subtotal_price_counter += currentMenuItem.getPrice() * currentMenuItem.getQuantity();
         }
 
-        subtotal.setText("$" + Double.toString(subtotal_price_counter));
-        total.setText("$" + Double.toString(subtotal_price_counter * (1 + taxRateDAO.getTaxRate().getTaxRate())));
+        subtotal.setText(CommonUtils.convertDoubleToPrice(subtotal_price_counter));
+        total.setText(CommonUtils.convertDoubleToPrice(subtotal_price_counter * (1 + (taxRateDAO.getTaxRate().getTaxRate() / 100.00))));
     }
 }
