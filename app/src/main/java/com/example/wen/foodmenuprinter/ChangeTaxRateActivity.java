@@ -42,7 +42,7 @@ public class ChangeTaxRateActivity extends BaseActivityForCommon {
                 finish();
             }
         };
-        
+
     }
 
 }
