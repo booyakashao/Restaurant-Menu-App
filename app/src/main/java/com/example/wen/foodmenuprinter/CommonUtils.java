@@ -29,6 +29,6 @@ public class CommonUtils {
 
         // Start a print job, passing in a PrintDocumentAdapter implementation
         // to handle the generation of a print document
-        printManager.print(jobName, new MyPrintDocumentAdapter(targetActivity), new PrintAttributes.Builder().build());
+        printManager.print(jobName, new MyPrintDocumentAdapter(targetActivity), null);
     }
 }
