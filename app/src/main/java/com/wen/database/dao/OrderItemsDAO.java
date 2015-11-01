@@ -30,7 +30,7 @@ public class OrderItemsDAO extends DatabaseUtilities {
         OrderItems existingOrder = getExistingOrderItem(orderId, menuId);
 
         if(existingOrder != null) {
-            Integer newQuantity = quantity + existingOrder.getQuantity();
+            Integer newQuantity = quantity;
 
             ContentValues contentValues = new ContentValues();
             contentValues.put(ORDER_ITEM_COL_4, newQuantity);
@@ -45,7 +45,7 @@ public class OrderItemsDAO extends DatabaseUtilities {
             ContentValues contentValues = new ContentValues();
             contentValues.put(ORDER_ITEM_COL_2, orderId);
             contentValues.put(ORDER_ITEM_COL_3, menuId);
-            contentValues.put(ORDER_ITEM_COL_4, quantity - 1);
+            contentValues.put(ORDER_ITEM_COL_4, quantity);
 
             result = db.insert(ORDER_ITEM_TABLE_NAME, null, contentValues);
         }

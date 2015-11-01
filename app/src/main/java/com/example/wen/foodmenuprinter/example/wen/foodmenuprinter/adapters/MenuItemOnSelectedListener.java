@@ -6,6 +6,7 @@ import android.widget.AdapterView;
 import com.wen.database.dao.OrderItemsDAO;
 import com.wen.database.dao.OrdersDAO;
 import com.wen.database.model.Menu_Item;
+import com.wen.database.model.OrderItems;
 import com.wen.database.model.Orders;
 
 /**
@@ -25,10 +26,11 @@ public class MenuItemOnSelectedListener implements AdapterView.OnItemSelectedLis
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Integer quantityToIncrease = position - menuItem.getQuantity();
         Orders currentOrder = ordersDAO.getCurrentOrder();
-        orderItemsDAO.createNewOrderItem(currentOrder.getId(), menuItem.getId(), quantityToIncrease);
+        orderItemsDAO.createNewOrderItem(currentOrder.getId(), menuItem.getId(), (position + 1));
     }
+
+
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {

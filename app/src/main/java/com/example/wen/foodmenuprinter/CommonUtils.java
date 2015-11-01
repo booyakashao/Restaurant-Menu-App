@@ -6,6 +6,7 @@ import android.print.PrintAttributes;
 import android.print.PrintManager;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 /**
  * Created by Wen on 10/5/2015.
@@ -21,7 +22,7 @@ public class CommonUtils {
         return new DecimalFormat("#0.00").format(percentage);
     }
 
-    public void doPrint(Activity targetActivity) {
+    public static void doPrint(Activity targetActivity, List<String> documentContents) {
         PrintManager printManager = (PrintManager) targetActivity.getSystemService(Context.PRINT_SERVICE);
 
         // Set job name, which will be displayed in the print queue
@@ -29,6 +30,6 @@ public class CommonUtils {
 
         // Start a print job, passing in a PrintDocumentAdapter implementation
         // to handle the generation of a print document
-        printManager.print(jobName, new MyPrintDocumentAdapter(targetActivity), null);
+        printManager.print(jobName, new MyPrintDocumentAdapter(targetActivity, documentContents), null);
     }
 }

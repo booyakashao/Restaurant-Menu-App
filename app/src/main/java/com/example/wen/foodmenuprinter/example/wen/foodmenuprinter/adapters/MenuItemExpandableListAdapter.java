@@ -132,7 +132,8 @@ public class MenuItemExpandableListAdapter extends BaseExpandableListAdapter {
 
         quantityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         quantitySpinner.setAdapter(quantityAdapter);
-        quantitySpinner.setSelection(menuItem.getQuantity());
+        int position = menuItem.getQuantity() - 1;
+        quantitySpinner.setSelection(position);
         quantitySpinner.setOnItemSelectedListener(new MenuItemOnSelectedListener(menuItem, orderItemsDAO, ordersDAO));
 
         return convertView;

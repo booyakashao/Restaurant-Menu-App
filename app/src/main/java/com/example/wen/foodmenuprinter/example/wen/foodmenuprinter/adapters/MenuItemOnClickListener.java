@@ -33,9 +33,6 @@ public class MenuItemOnClickListener implements View.OnClickListener {
         OrderItems currentOrderItem = orderItemsDAO.getExistingOrderItem(currentOrder.getId(), menuItem.getId());
         Integer resultingInteger = orderItemsDAO.deleteOrderItem(currentOrderItem.getId());
 
-        Toast.makeText(view.getContext(), "menu id " + String.valueOf(currentOrderItem.getId()), Toast.LENGTH_LONG).show();
-        Toast.makeText(view.getContext(), "query result " + String.valueOf(resultingInteger), Toast.LENGTH_LONG).show();
-
         view.refreshDrawableState();
     }
 }

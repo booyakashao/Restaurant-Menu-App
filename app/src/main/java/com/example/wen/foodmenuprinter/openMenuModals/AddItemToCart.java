@@ -16,6 +16,7 @@ import com.example.wen.foodmenuprinter.R;
 import com.wen.database.dao.MenuDAO;
 import com.wen.database.dao.OrderItemsDAO;
 import com.wen.database.dao.OrdersDAO;
+import com.wen.database.model.OrderItems;
 import com.wen.database.model.Orders;
 
 public class AddItemToCart extends Activity {
@@ -67,8 +68,16 @@ public class AddItemToCart extends Activity {
 
                 if(hasCurrentOrder) {
                     currentOrder = orderDAO.getCurrentOrder();
-                    Integer currentSelectedQuantity = quantityNumberPicker.getValue();
-                    if(orderItemsDAO.createNewOrderItem(currentOrder.getId(), menu_item_id, currentSelectedQuantity)) {
+                    Integer newQuantity = quantityNumberPicker.getValue();
+
+                    //If order item exists add more
+                    OrderItems currentOrderItem = orderItemsDAO.getExistingOrderItem(currentOrder.getId(), menu_item_id);
+                    if(currentOrderItem != null) {
+                        newQuantity += currentOrderItem.getQuantity();
+                    }
+
+
+                    if(orderItemsDAO.createNewOrderItem(currentOrder.getId(), menu_item_id, newQuantity)) {
                         executeDone();
                     } else {
                         Toast.makeText(v.getContext(), "Order was not completed", Toast.LENGTH_SHORT).show();
