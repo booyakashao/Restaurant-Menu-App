@@ -3,8 +3,10 @@ package com.example.wen.foodmenuprinter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.wen.foodmenuprinter.example.wen.foodmenuprinter.adapters.MenuItemExpandableListAdapter;
@@ -26,6 +28,7 @@ public class ViewCartActivity extends BaseActivityForCommon {
     HashMap<Category, List<Menu_Item>> listDataChild;
     TextView subtotal;
     TextView total;
+    Button reload;
     Button printOrder;
     Orders currentOrder;
     List<String> orderText;
@@ -43,6 +46,8 @@ public class ViewCartActivity extends BaseActivityForCommon {
         total = (TextView) findViewById(R.id.viewCartMenuTotalAmount);
 
         //Set buttons
+        reload = (Button) findViewById(R.id.viewCartReloadButton);
+        reload.setOnClickListener(reloadOrder());
         printOrder = (Button) findViewById(R.id.viewCartPrintOrderButton);
         printOrder.setOnClickListener(printFinalOrder());
 
@@ -53,6 +58,7 @@ public class ViewCartActivity extends BaseActivityForCommon {
 
         // setting list adapter
         listOfOrdersByCategory.setAdapter(menuItemExpandableListAdapter);
+
     }
 
     /*
@@ -120,6 +126,21 @@ public class ViewCartActivity extends BaseActivityForCommon {
         orderText.add("==============================");
         orderText.add("Subtotal                     " + subtotal.getText().toString());
         orderText.add("Total                        " + total.getText().toString());
+    }
+
+    private View.OnClickListener reloadOrder() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prepareListData();
+
+                menuItemExpandableListAdapter = new MenuItemExpandableListAdapter(v.getContext(), listDataHeader, listDataChild);
+
+                // setting list adapter
+                listOfOrdersByCategory.setAdapter(menuItemExpandableListAdapter);
+            }
+        };
+
     }
 
     private View.OnClickListener printFinalOrder() {
