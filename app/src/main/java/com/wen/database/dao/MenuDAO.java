@@ -67,11 +67,6 @@ public class MenuDAO extends DatabaseUtilities {
         return db.delete(MENU_ITEM_TABLE_NAME, MENU_ITEM_COL_4 + " = ?", new String[] {Integer.toString(categoryId)});
     }
 
-    public Integer deleteMenuItemById(Integer menuId) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(MENU_ITEM_TABLE_NAME, MENU_ITEM_COL_1 + " = ?", new String[] {Integer.toString(menuId)});
-    }
-
     public Menu_Item getMenuItemById(Integer id) {
         SQLiteDatabase db = this.getReadableDatabase();
 

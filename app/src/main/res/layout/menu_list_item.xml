@@ -30,12 +30,4 @@
         android:layout_alignStart="@+id/menu_title_text_view"
         android:layout_below="@+id/menu_description_text_view"
         />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/menu_price_text_view"
-        android:text="@string/menu_item_delete_button_text"
-        android:id="@+id/menu_item_delete_button" />
 </RelativeLayout>

@@ -27,7 +27,6 @@
     <string name="change_tax_rate_submit_button_text">Submit Change</string>
     <string name="view_cart_print_order_button_text">Print Order</string>
     <string name="view_cart_reload_button_text">Reload</string>
-    <string name="menu_item_delete_button_text">Delete</string>
 
     <!-- Menu Options Text -->
     <string name="create_new_menu_item_option">Create New Menu Item</string>
