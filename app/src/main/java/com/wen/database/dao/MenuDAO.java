@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.view.Menu;
 
 import com.wen.database.DatabaseUtilities;
 import com.wen.database.model.Category;
@@ -65,6 +64,11 @@ public class MenuDAO extends DatabaseUtilities {
     public Integer deleteMenuItemsForCategory(Integer categoryId) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(MENU_ITEM_TABLE_NAME, MENU_ITEM_COL_4 + " = ?", new String[] {Integer.toString(categoryId)});
+    }
+
+    public Integer deleteMenuItemById(Integer menuId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(MENU_ITEM_TABLE_NAME, MENU_ITEM_COL_1 + " = ?", new String[] {Integer.toString(menuId)});
     }
 
     public Menu_Item getMenuItemById(Integer id) {

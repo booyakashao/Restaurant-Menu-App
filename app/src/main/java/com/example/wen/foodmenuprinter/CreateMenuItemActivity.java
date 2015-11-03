@@ -88,9 +88,9 @@ public class CreateMenuItemActivity extends BaseActivityForCommon {
                 Integer categoryId = categoryDAO.getCategoryByName(categoryName);
 
                 if(menuDAO.insertNewMenuItem(name, description, categoryId, price)) {
-                    Toast.makeText(v.getContext(), "Menu item was created", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(v.getContext(), "Menu item was created", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(v.getContext(), "Menu item was not created", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(v.getContext(), "Menu item was not created", Toast.LENGTH_LONG).show();
                 }
 
                 Intent mainMenuIntent = new Intent(v.getContext(), MainMenuActivity.class);
