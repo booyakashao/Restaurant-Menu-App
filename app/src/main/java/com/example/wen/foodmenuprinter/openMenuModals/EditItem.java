@@ -89,7 +89,7 @@ public class EditItem extends Activity {
                 Category selectedCategory = categoryDAO.getCategoryById(categoryId);
 
                 currentMenuItem.setCategory(selectedCategory);
-                if(price.getText().toString().isEmpty()) {
+                if(!price.getText().toString().isEmpty()) {
                     currentMenuItem.setPrice(Double.parseDouble(price.getText().toString()));
                 }
 

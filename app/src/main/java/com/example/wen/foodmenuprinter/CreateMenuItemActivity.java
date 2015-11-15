@@ -60,21 +60,26 @@ public class CreateMenuItemActivity extends BaseActivityForCommon {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = newMenuName.getText().toString();
-                String description = newMenuDescription.getText().toString();
-                String categoryName = categorySelectorSpinner.getSelectedItem().toString();
-                Double price = Double.parseDouble(newMenuPrice.getText().toString());
-                Integer categoryId = categoryDAO.getCategoryByName(categoryName);
-
-                if(menuDAO.insertNewMenuItem(name, description, categoryId, price)) {
-                    //Toast.makeText(v.getContext(), "Menu item was created", Toast.LENGTH_LONG).show();
+                if(categoryDAO.getAllCategories().isEmpty()) {
+                    Toast.makeText(v.getContext(), "Please create and select a category before continuing", Toast.LENGTH_LONG).show();
+                } if(newMenuPrice.getText().toString().isEmpty()) {
+                    Toast.makeText(v.getContext(), "Please enter a price", Toast.LENGTH_LONG).show();
                 } else {
-                    //Toast.makeText(v.getContext(), "Menu item was not created", Toast.LENGTH_LONG).show();
-                }
+                    String name = newMenuName.getText().toString();
+                    String description = newMenuDescription.getText().toString();
+                    String categoryName = categorySelectorSpinner.getSelectedItem().toString();
+                    Double price = Double.parseDouble(newMenuPrice.getText().toString());
+                    Integer categoryId = categoryDAO.getCategoryByName(categoryName);
 
-                Intent mainMenuIntent = new Intent(v.getContext(), MainMenuActivity.class);
-                startActivity(mainMenuIntent);
-                finish();
+                    if(menuDAO.insertNewMenuItem(name, description, categoryId, price)) {
+                        //Toast.makeText(v.getContext(), "Menu item was created", Toast.LENGTH_LONG).show();
+                    } else {
+                        //Toast.makeText(v.getContext(), "Menu item was not created", Toast.LENGTH_LONG).show();
+                    }
+
+                    Intent mainMenuIntent = new Intent(v.getContext(), MainMenuActivity.class);
+                    startActivity(mainMenuIntent);
+                }
             }
         };
     }
