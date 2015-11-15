@@ -2,7 +2,9 @@ package com.example.wen.foodmenuprinter.example.wen.foodmenuprinter.adapters;
 
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
+import com.example.wen.foodmenuprinter.ViewCartActivity;
 import com.wen.database.dao.OrderItemsDAO;
 import com.wen.database.dao.OrdersDAO;
 import com.wen.database.model.Menu_Item;
@@ -27,7 +29,13 @@ public class MenuItemOnSelectedListener implements AdapterView.OnItemSelectedLis
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Orders currentOrder = ordersDAO.getCurrentOrder();
+        OrderItems currentOrderItem = orderItemsDAO.getExistingOrderItem(currentOrder.getId(), menuItem.getId());
         orderItemsDAO.createNewOrderItem(currentOrder.getId(), menuItem.getId(), (position + 1));
+
+        if(currentOrderItem.getQuantity() != (position + 1)) {
+            ViewCartActivity viewCartActivity = (ViewCartActivity) view.getContext();
+            viewCartActivity.onActivityResult(1, 1, null);
+        }
     }
 
 

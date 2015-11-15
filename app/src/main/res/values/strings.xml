@@ -12,35 +12,38 @@
     <string name="title_category_list">Menu Items</string>
     <string name="title_category_detail">Category Detail</string>
     <string name="title_activity_add_item_to_cart">Add Item To Cart</string>
+    <string name="title_activity_edit_item">Edit Item</string>
     <string name="title_activity_view_cart">View Cart</string>
+    <string name="title_activity_change_tax_rate">ChangeTaxRateActivity</string>
 
     <!-- Button Text -->
     <string name="create_menu_button_text">Create Menu Item</string>
-    <string name="open_menu_button_text">Open Menu</string>
-    <string name="change_tax_rate_button_text">Change Tax Rate</string>
+    <string name="create_menu_item_submit_button">Create Menu Item</string>
     <string name="add_category_button_text">Add Category</string>
     <string name="delete_category_button_text">Delete Category</string>
-    <string name="create_menu_item_submit_button">Create Menu Item</string>
-    <string name="checkout_button_text">Checkout or View Cart</string>
+
+    <string name="open_menu_button_text">Open Menu</string>
+
     <string name="add_to_cart_button_text">Add To Cart</string>
-    <string name="view_cart_remove_item_button_text">Delete</string>
+
+    <string name="edit_item_submit_button_text">Submit</string>
+
+    <string name="change_tax_rate_button_text">Change Tax Rate</string>
     <string name="change_tax_rate_submit_button_text">Submit Change</string>
+
+    <string name="view_cart_remove_item_button_text">Delete</string>
     <string name="view_cart_print_order_button_text">Print Order</string>
     <string name="view_cart_reload_button_text">Reload</string>
+    <string name="checkout_button_text">Checkout or View Cart</string>
+
+    <string name="menu_item_delete_button_text">Delete</string>
+    <string name="menu_item_add_to_cart_button_text">Add to cart</string>
+    <string name="menu_item_edit_button_text">Edit</string>
 
     <!-- Menu Options Text -->
     <string name="create_new_menu_item_option">Create New Menu Item</string>
     <string name="open_menu_item_option">Open Menu Item</string>
-    <string name="edit_menu_option">Edit Menu</string>
-    <string name="delete_menu_option">Delete Menu</string>
     <string name="main_menu_option">Main Menu</string>
-
-    <!-- Header Texts -->
-    <string name="create_new_menu_item_header">Create New Menu Item</string>
-    <string name="create_new_menu_item_subtitle">Enter name for new menu item</string>
-    <string name="category_selector_header">Category</string>
-    <string name="create_new_menu_item_description_header">Description for New Menu Item</string>
-    <string name="create_new_menu_item_price_header">Menu Price</string>
 
     <!-- Hint Text -->
     <string name="new_menu_item_name_hint">Enter name of Menu Item</string>
@@ -48,13 +51,27 @@
     <string name="new_category_hint">Enter name of new category here</string>
     <string name="new_menu_item_price_hint">Enter price here</string>
 
+    <!-- Create Menu Item Text -->
+    <string name="create_new_menu_item_header">Create New Menu Item</string>
+    <string name="create_new_menu_item_subtitle">Enter name for new menu item</string>
+    <string name="category_selector_header">Category</string>
+    <string name="create_new_menu_item_description_header">Description for New Menu Item</string>
+    <string name="create_new_menu_item_price_header">Menu Price</string>
+
+    <!-- Add to Cart Text -->
+    <string name="add_to_cart_choose_quantity_header">Choose Quantity</string>
+
+
+    <!-- Edit Menu Item -->
+    <string name="edit_menu_item_title">Title</string>
+    <string name="edit_menu_item_description">Description</string>
+    <string name="edit_menu_item_category">Category</string>
+    <string name="edit_menu_item_price">Price</string>
+
     <!-- View Cart Text-->
     <string name="view_cart_quantity_text">Quantity: </string>
     <string name="view_cart_menu_subtotal_label">Subtotal: </string>
     <string name="view_cart_menu_total_label">Total: </string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_change_tax_rate">ChangeTaxRateActivity</string>
 
     <!-- Change Tax Rate Text -->
     <string name="change_tax_rate_title">Tax Rate</string>

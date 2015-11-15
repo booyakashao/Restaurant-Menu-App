@@ -1,16 +1,13 @@
 package com.example.wen.foodmenuprinter.example.wen.foodmenuprinter.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.wen.foodmenuprinter.R;
-import com.wen.database.model.Menu_Item;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +58,15 @@ public class MenuListAdapter extends BaseAdapter {
             menuItemName.setText(targetMenuObjectListItem.getMenuItemName());
             menuItemDesc.setText(targetMenuObjectListItem.getMenuItemDescription());
             menuItemPrice.setText(String.valueOf(targetMenuObjectListItem.getMenuPrice()));
+
+            Button addToCartButton = (Button) convertView.findViewById(R.id.menu_item_add_to_cart_button);
+            addToCartButton.setOnClickListener(new MenuOnClickAddToCartListener(convertView.getContext(), parent, position, menuObjectsList));
+
+            Button editButton = (Button) convertView.findViewById(R.id.menu_item_edit_button);
+            editButton.setOnClickListener(new MenuOnClickEditMenuItemListener(convertView.getContext(), parent, position, menuObjectsList));
+
+            Button deleteButton = (Button) convertView.findViewById(R.id.menu_item_delete_button);
+            deleteButton.setOnClickListener(new MenuOnClickDeleteListener(convertView.getContext(), parent, position, menuObjectsList));
         }
 
         return convertView;

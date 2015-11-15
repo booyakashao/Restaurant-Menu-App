@@ -36,6 +36,8 @@ public class OrdersDAO extends DatabaseUtilities {
         ordersCursor.moveToFirst();
         int cursorCount = ordersCursor.getInt(0);
 
+        db.close();
+
         if(cursorCount > 0) {
             return true;
         } else {
@@ -75,6 +77,8 @@ public class OrdersDAO extends DatabaseUtilities {
             orderToBeReturn.setCurrent(false);
         }
 
+        db.close();
+
         return orderToBeReturn;
     }
 
@@ -87,6 +91,8 @@ public class OrdersDAO extends DatabaseUtilities {
         contentValues.put(ORDERS_COL_4, 1);
 
         long result = db.insert(ORDERS_TABLE_NAME, null, contentValues);
+
+        db.close();
 
         if(result == -1) {
             return false;

@@ -53,29 +53,8 @@ public class CreateMenuItemActivity extends BaseActivityForCommon {
 
         //Set up category spinner
         categorySelectorSpinner = (Spinner) findViewById(R.id.category_spinner);
-        categorySelectorSpinner.setAdapter(populateSpinner());
+        categorySelectorSpinner.setAdapter(CommonUtils.populateCategorySpinner(this));
     }
-
-    private ArrayAdapter<String> populateSpinner() {
-        List<Category> allCategories = categoryDAO.getAllCategories();
-
-        List<String> category_spinner_string_list = new ArrayList<String>();
-        if(allCategories.size() == 0) {
-            category_spinner_string_list.add("Add a category");
-        } else {
-            for(Category currentCategory : allCategories) {
-                category_spinner_string_list.add(currentCategory.getName());
-            }
-        }
-
-        ArrayAdapter<String> category_spinner_array_adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, category_spinner_string_list);
-
-        category_spinner_array_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        return category_spinner_array_adapter;
-    }
-
 
     private View.OnClickListener createMenuOnClickListener() {
         return new View.OnClickListener() {
@@ -135,12 +114,12 @@ public class CreateMenuItemActivity extends BaseActivityForCommon {
         switch(requestCode) {
             case CategoryEntryActivityResultCode:
                 if (resultCode == RESULT_OK) {
-                    categorySelectorSpinner.setAdapter(populateSpinner());
+                    categorySelectorSpinner.setAdapter(CommonUtils.populateCategorySpinner(this));
                 }
                 break;
             case CategoryDeleteActivityResultCode:
                 if (resultCode == RESULT_OK) {
-                    categorySelectorSpinner.setAdapter(populateSpinner());
+                    categorySelectorSpinner.setAdapter(CommonUtils.populateCategorySpinner(this));
                 }
                 break;
             default:

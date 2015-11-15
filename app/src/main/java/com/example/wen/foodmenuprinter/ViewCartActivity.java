@@ -1,6 +1,7 @@
 package com.example.wen.foodmenuprinter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,7 +29,6 @@ public class ViewCartActivity extends BaseActivityForCommon {
     HashMap<Category, List<Menu_Item>> listDataChild;
     TextView subtotal;
     TextView total;
-    Button reload;
     Button printOrder;
     Orders currentOrder;
     List<String> orderText;
@@ -46,8 +46,6 @@ public class ViewCartActivity extends BaseActivityForCommon {
         total = (TextView) findViewById(R.id.viewCartMenuTotalAmount);
 
         //Set buttons
-        reload = (Button) findViewById(R.id.viewCartReloadButton);
-        reload.setOnClickListener(reloadOrder());
         printOrder = (Button) findViewById(R.id.viewCartPrintOrderButton);
         printOrder.setOnClickListener(printFinalOrder());
 
@@ -128,21 +126,6 @@ public class ViewCartActivity extends BaseActivityForCommon {
         orderText.add("Total                        " + total.getText().toString());
     }
 
-    private View.OnClickListener reloadOrder() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                prepareListData();
-
-                menuItemExpandableListAdapter = new MenuItemExpandableListAdapter(v.getContext(), listDataHeader, listDataChild);
-
-                // setting list adapter
-                listOfOrdersByCategory.setAdapter(menuItemExpandableListAdapter);
-            }
-        };
-
-    }
-
     private View.OnClickListener printFinalOrder() {
         return new View.OnClickListener() {
             @Override
@@ -152,5 +135,17 @@ public class ViewCartActivity extends BaseActivityForCommon {
             }
         };
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+        prepareListData();
+
+        menuItemExpandableListAdapter = new MenuItemExpandableListAdapter(this, listDataHeader, listDataChild);
+
+        // setting list adapter
+        listOfOrdersByCategory.setAdapter(menuItemExpandableListAdapter);
     }
 }

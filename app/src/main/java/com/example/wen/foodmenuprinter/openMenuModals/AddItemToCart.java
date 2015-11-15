@@ -27,7 +27,7 @@ public class AddItemToCart extends Activity {
 
     NumberPicker quantityNumberPicker;
     Button addToCartButton;
-    Intent indentData;
+    Intent intentData;
     Orders currentOrder;
 
     @Override
@@ -53,7 +53,7 @@ public class AddItemToCart extends Activity {
 
         addToCartButton.setOnClickListener(addToCartOnClickListener());
 
-        indentData = getIntent();
+        intentData = getIntent();
     }
 
     private View.OnClickListener addToCartOnClickListener() {
@@ -62,7 +62,7 @@ public class AddItemToCart extends Activity {
             public void onClick(View v) {
                 // Perform add to cart function here
 
-                Integer menu_item_id = indentData.getIntExtra("menu_item_id", -1);
+                Integer menu_item_id = intentData.getIntExtra("menu_item_id", -1);
 
                 boolean hasCurrentOrder = orderDAO.hasCurrentOrder();
 

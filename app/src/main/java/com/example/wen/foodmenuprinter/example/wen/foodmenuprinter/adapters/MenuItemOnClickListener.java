@@ -4,6 +4,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.wen.foodmenuprinter.ViewCartActivity;
 import com.wen.database.dao.OrderItemsDAO;
 import com.wen.database.dao.OrdersDAO;
 import com.wen.database.model.Menu_Item;
@@ -33,6 +34,7 @@ public class MenuItemOnClickListener implements View.OnClickListener {
         OrderItems currentOrderItem = orderItemsDAO.getExistingOrderItem(currentOrder.getId(), menuItem.getId());
         Integer resultingInteger = orderItemsDAO.deleteOrderItem(currentOrderItem.getId());
 
-        view.refreshDrawableState();
+        ViewCartActivity viewCartActivity = (ViewCartActivity) v.getContext();
+        viewCartActivity.onActivityResult(1, 1, null);
     }
 }

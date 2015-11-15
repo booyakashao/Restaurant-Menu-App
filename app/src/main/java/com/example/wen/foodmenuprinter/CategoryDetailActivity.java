@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 /**
  * An activity representing a single Category detail screen. This

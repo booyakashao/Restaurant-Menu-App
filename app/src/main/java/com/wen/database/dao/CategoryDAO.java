@@ -28,6 +28,8 @@ public class CategoryDAO extends DatabaseUtilities {
 
         long result = db.insert(CATEGORY_TABLE_NAME, null, contentValues);
 
+        db.close();
+
         if(result == -1) {
             return false;
         } else {
@@ -59,6 +61,8 @@ public class CategoryDAO extends DatabaseUtilities {
             categoryToReturn = new Category(cursor.getInt(0), cursor.getString(1));
         }
 
+        db.close();
+
         return categoryToReturn;
     }
 
@@ -76,6 +80,8 @@ public class CategoryDAO extends DatabaseUtilities {
         Cursor cursor =  db.query(CATEGORY_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), whereClause, whereArgs.toArray(new String[whereArgs.size()]), null, null, null);
         cursor.moveToFirst();
 
+        db.close();
+
         return cursor.getInt(0);
     }
 
@@ -90,6 +96,8 @@ public class CategoryDAO extends DatabaseUtilities {
         while (categoryCursor.moveToNext()) {
             categoriesToReturn.add(new Category(categoryCursor.getInt(0), categoryCursor.getString(1)));
         }
+
+        db.close();
 
         return categoriesToReturn;
     }

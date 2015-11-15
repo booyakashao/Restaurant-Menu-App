@@ -3,6 +3,7 @@ package com.example.wen.foodmenuprinter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
 
 
 /**
@@ -85,5 +86,12 @@ public class CategoryListActivity extends FragmentActivity
         startActivity(mainMenuIntent);
         finish();
         super.onBackPressed();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+        this.recreate();
     }
 }

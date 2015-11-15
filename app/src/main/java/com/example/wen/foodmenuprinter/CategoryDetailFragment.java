@@ -3,18 +3,18 @@ package com.example.wen.foodmenuprinter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.internal.widget.AdapterViewCompat;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.example.wen.foodmenuprinter.example.wen.foodmenuprinter.adapters.MenuListAdapter;
 import com.example.wen.foodmenuprinter.example.wen.foodmenuprinter.adapters.MenuObjectForListView;
@@ -23,7 +23,6 @@ import com.wen.database.dao.MenuDAO;
 import com.wen.database.model.Menu_Item;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -86,7 +85,6 @@ public class CategoryDetailFragment extends Fragment {
 
         ListView menuItemListView = (ListView) rootView.findViewById(R.id.menuListItem);
         menuItemListView.setAdapter(menuItemListAdapter);
-        menuItemListView.setOnItemClickListener(addToCartOnClickListener());
 
         checkoutButton.setOnClickListener(openCartOnClickListener());
 
@@ -108,20 +106,6 @@ public class CategoryDetailFragment extends Fragment {
 
         return MenuObjectsList;
 
-    }
-
-    private AdapterView.OnItemClickListener addToCartOnClickListener() {
-        return new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MenuObjectForListView chapter = menuItemListAdapter.getMenuItem(position);
-
-                Intent addItemToCartIntent = new Intent(parent.getContext(), AddItemToCart.class);
-                addItemToCartIntent.putExtra("menu_item_id", chapter.getMenuItemId());
-
-                startActivity(addItemToCartIntent);
-            }
-        };
     }
 
     private View.OnClickListener openCartOnClickListener() {

@@ -60,6 +60,11 @@
             android:name=".ChangeTaxRateActivity"
             android:label="@string/title_activity_change_tax_rate" >
         </activity>
+        <activity
+            android:name=".openMenuModals.EditItem"
+            android:label="@string/title_activity_edit_item"
+            android:theme="@android:style/Theme.Dialog">
+        </activity>
     </application>
 
 </manifest>

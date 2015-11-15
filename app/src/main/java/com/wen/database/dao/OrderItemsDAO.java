@@ -50,6 +50,8 @@ public class OrderItemsDAO extends DatabaseUtilities {
             result = db.insert(ORDER_ITEM_TABLE_NAME, null, contentValues);
         }
 
+        db.close();
+
         if(result == -1) {
             return false;
         } else {
@@ -74,8 +76,13 @@ public class OrderItemsDAO extends DatabaseUtilities {
 
         Cursor orderItemsCursor = db.query(ORDER_ITEM_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), whereClause, whereArgs.toArray(new String[whereArgs.size()]), null, null, null);
 
+
+
         if(orderItemsCursor.moveToFirst()) {
-           return new OrderItems(orderItemsCursor.getInt(0), new Orders(orderItemsCursor.getInt(1), null), new Menu_Item(orderItemsCursor.getInt(2), null, null, null, null), orderItemsCursor.getInt(3));
+
+            OrderItems orderItemToReturn = new OrderItems(orderItemsCursor.getInt(0), new Orders(orderItemsCursor.getInt(1), null), new Menu_Item(orderItemsCursor.getInt(2), null, null, null, null), orderItemsCursor.getInt(3));
+
+           return orderItemToReturn;
         } else {
             return null;
         }
@@ -100,12 +107,18 @@ public class OrderItemsDAO extends DatabaseUtilities {
             orderItemsToBeReturned.add(new OrderItems(orderItemsCursor.getInt(0), new Orders(orderItemsCursor.getInt(1), null), new Menu_Item(orderItemsCursor.getInt(2), null, null, null, null), orderItemsCursor.getInt(3)));
         }
 
+        db.close();
+
         return orderItemsToBeReturned;
     }
 
     public Integer deleteOrderItem(Integer OrderItemId) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        return db.delete(ORDER_ITEM_TABLE_NAME, ORDER_ITEM_COL_1 + " = ?", new String[] {Integer.toString(OrderItemId)});
+        Integer result = db.delete(ORDER_ITEM_TABLE_NAME, ORDER_ITEM_COL_1 + " = ?", new String[] {Integer.toString(OrderItemId)});
+
+        db.close();
+
+        return result;
     }
 }

@@ -33,6 +33,8 @@ public class MenuDAO extends DatabaseUtilities {
         cursor.moveToFirst();
         int cursorCount = cursor.getInt(0);
 
+        db.close();
+
         if(cursorCount > 0) {
             return true;
         } else {
@@ -54,6 +56,8 @@ public class MenuDAO extends DatabaseUtilities {
 
         long result = db.insert(MENU_ITEM_TABLE_NAME, null, contentValues);
 
+        db.close();
+
         if(result == -1) {
             return false;
         } else {
@@ -63,12 +67,20 @@ public class MenuDAO extends DatabaseUtilities {
 
     public Integer deleteMenuItemsForCategory(Integer categoryId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(MENU_ITEM_TABLE_NAME, MENU_ITEM_COL_4 + " = ?", new String[] {Integer.toString(categoryId)});
+        Integer result = db.delete(MENU_ITEM_TABLE_NAME, MENU_ITEM_COL_4 + " = ?", new String[] {Integer.toString(categoryId)});
+
+        db.close();
+
+        return result;
     }
 
     public Integer deleteMenuItemById(Integer menuId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(MENU_ITEM_TABLE_NAME, MENU_ITEM_COL_1 + " = ?", new String[] {Integer.toString(menuId)});
+        Integer result = db.delete(MENU_ITEM_TABLE_NAME, MENU_ITEM_COL_1 + " = ?", new String[] {Integer.toString(menuId)});
+
+        db.close();
+
+        return result;
     }
 
     public Menu_Item getMenuItemById(Integer id) {
@@ -89,6 +101,8 @@ public class MenuDAO extends DatabaseUtilities {
         if (menuItemCursor.moveToFirst()) {
             currentMenuItem = new Menu_Item(menuItemCursor.getInt(0), menuItemCursor.getString(1), menuItemCursor.getString(2), menuItemCursor.getDouble(4), new Category(menuItemCursor.getInt(3), null));
         }
+
+        db.close();
 
         return currentMenuItem;
     }
@@ -112,6 +126,8 @@ public class MenuDAO extends DatabaseUtilities {
             listOfAllMenuItems.add(new Menu_Item(menuItemCursor.getInt(0), menuItemCursor.getString(1), menuItemCursor.getString(2), menuItemCursor.getDouble(4), new Category(categoryId, null)));
         }
 
+        db.close();
+
         return listOfAllMenuItems;
     }
 
@@ -126,8 +142,37 @@ public class MenuDAO extends DatabaseUtilities {
         Cursor cursor =  db.query(MENU_ITEM_TABLE_NAME, tableColumns.toArray(new String[tableColumns.size()]), null, null, null, null, null);
 
         cursor.moveToFirst();
+
+        db.close();
+
         return cursor.getInt(0);
     }
 
+    public boolean updateMenu(Menu_Item toBeUpdateMenuItem) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        long result = 0;
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MENU_ITEM_COL_1, toBeUpdateMenuItem.getId());
+        contentValues.put(MENU_ITEM_COL_2, toBeUpdateMenuItem.getName());
+        contentValues.put(MENU_ITEM_COL_3, toBeUpdateMenuItem.getDescription());
+        contentValues.put(MENU_ITEM_COL_4, toBeUpdateMenuItem.getCategory().getId());
+        contentValues.put(MENU_ITEM_COL_5, toBeUpdateMenuItem.getPrice());
+
+        String whereClause = MENU_ITEM_COL_1 + " = ? ";
+
+        List<String> whereArgs = new ArrayList<String>();
+        whereArgs.add(toBeUpdateMenuItem.getId().toString());
+
+        result = db.update(MENU_ITEM_TABLE_NAME, contentValues, whereClause, whereArgs.toArray(new String[whereArgs.size()]));
+
+        db.close();
+
+        if(result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

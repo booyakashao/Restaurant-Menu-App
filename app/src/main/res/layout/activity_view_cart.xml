@@ -58,14 +58,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/view_cart_reload_button_text"
-        android:id="@+id/viewCartReloadButton"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/viewCartMenuSubtotalAmount" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/view_cart_print_order_button_text"
         android:id="@+id/viewCartPrintOrderButton"
         android:layout_alignParentBottom="true"
